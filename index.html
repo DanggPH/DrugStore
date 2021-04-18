@@ -53,7 +53,7 @@
                            <li id="search" class="search">
                               <form><input class="search-submit" type="submit" value=""><input class="search-input" placeholder="Enter your search term..." type="text" value="" name="search"></form>
                            </li>
-                           <li class="option-cart" onmouseover="updateCart()">
+                           <li class="option-cart" onmouseover="updateCart(),updatePrice()">
                               <a href="#" class="cart-icon">cart <span class="cart_no">0</span></a>
                               <ul class="option-cart-item">
                                  <li>
@@ -64,8 +64,8 @@
                                           <p>Size: <span class="light-red">One size</span><br>Quantity: <span class="light-red">01</span></p>
                                        </div>
                                        <div class="right">
-                                          <p class="price">300.000 VNĐ</p>
-                                          <a href="#" class="remove" onclick="this.parentElement.parentElement.parentElement.remove();alert('đã xoá item');"><img src="images/remove.png" alt="remove"></a>
+                                          <p class="price">300000</p><p>VND</p>
+                                          <a href="#" class="remove" onclick="this.parentElement.parentElement.parentElement.remove();alert('đã xoá item');updatePrice()"><img src="images/remove.png" alt="remove"></a>
                                        </div>
                                     </div>
                                  </li>
@@ -77,12 +77,12 @@
                                           <p>Size: <span class="light-red">One size</span><br>Quantity: <span class="light-red">01</span></p>
                                        </div>
                                        <div class="right">
-                                          <p class="price" >300.000 VNĐ</p>
+                                          <p class="price" >300000</p><p>VND</p>
                                           <a href="#" class="remove" onclick="this.parentElement.parentElement.parentElement.remove();"><img src="images/remove.png" alt="remove"></a>
                                        </div>
                                     </div>
                                  </li>
-                                 <li><span class="total">Total <strong >600.000 VNĐ</strong></span><button class="checkout" onClick="location.href='checkout.html'">CheckOut</button></li>
+                                 <li><span class="total">Total <strong id="total-price" >600.000 VNĐ</strong></span><button class="checkout" onClick="location.href='checkout.html'">CheckOut</button></li>
                               </ul>
                            </li>
                         </ul>
