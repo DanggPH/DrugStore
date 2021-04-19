@@ -55,34 +55,8 @@
                            </li>
                            <li class="option-cart" onmouseover="updateCart(),updatePrice()">
                               <a href="#" class="cart-icon">cart <span class="cart_no">0</span></a>
-                              <ul class="option-cart-item">
-                                 <li>
-                                    <div class="cart-item">
-                                       <div class="image"><img src="images/products/thum/products-01.png" alt=""></div>
-                                       <div class="item-description">
-                                          <p class="name">Sản phẩm</p>
-                                          <p>Size: <span class="light-red">One size</span><br>Quantity: <span class="light-red">01</span></p>
-                                       </div>
-                                       <div class="right">
-                                          <p class="price">300000</p><p>VND</p>
-                                          <a href="#" class="remove" onclick="this.parentElement.parentElement.parentElement.remove();alert('đã xoá item');updatePrice()"><img src="images/remove.png" alt="remove"></a>
-                                       </div>
-                                    </div>
-                                 </li>
-                                 <li>
-                                    <div class="cart-item">
-                                       <div class="image"><img src="images/products/thum/products-02.png" alt=""></div>
-                                       <div class="item-description">
-                                          <p class="name">Sản phẩm</p>
-                                          <p>Size: <span class="light-red">One size</span><br>Quantity: <span class="light-red">01</span></p>
-                                       </div>
-                                       <div class="right">
-                                          <p class="price" >300000</p><p>VND</p>
-                                          <a href="#" class="remove" onclick="this.parentElement.parentElement.parentElement.remove();"><img src="images/remove.png" alt="remove"></a>
-                                       </div>
-                                    </div>
-                                 </li>
-                                 <li><span class="total">Total <strong id="total-price" >600.000 VNĐ</strong></span><button class="checkout" onClick="location.href='checkout.html'">CheckOut</button></li>
+                              <ul class="option-cart-item" id="cart-list">
+                                 <li id="marker"><span class="total">Total <strong id="total-price" >600.000 VNĐ</strong></span><button class="checkout" onClick="location.href='checkout.html'">CheckOut</button></li>
                               </ul>
                            </li>
                         </ul>
@@ -205,36 +179,34 @@
                         <div class="row">
                            <div class="col-md-3 col-sm-6">
                               <div class="products">
-                                 <div class="offer">- %20</div>
                                  <div class="thumbnail"><a href="details.html"><img src="images/products/small/products-01.png" alt="Product Name"></a></div>
-                                 <div class="productname">Sản phẩm 2021</div>
-                                 <h4 class="price">415.000 VNĐ</h4>
-                                 <div class="button_group"><button class="button add-cart" type="button">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
+                                 <div class="productname"></br></br>Sản phẩm 2021</div>
+                                 <h4 class="price">415000 VNĐ</h4>
+                                 <div class="button_group"><button class="button add-cart" type="button" onclick="addToCart(this);updateCart();">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
                               </div>
                            </div>
                            <div class="col-md-3 col-sm-6">
                               <div class="products">
                                  <div class="thumbnail"><a href="details2.html"><img src="images/products/small/products-04.png" alt="Product Name"></a></div>
-                                 <div class="productname">Sản phẩm 2021</div>
-                                 <h4 class="price">577.000 VNĐ</h4>
-                                 <div class="button_group"><button class="button add-cart" type="button">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
+                                 <div class="productname"></br></br>Sản phẩm 2021</div>
+                                 <h4 class="price">577000 VNĐ</h4>
+                                 <div class="button_group"><button class="button add-cart" type="button" onclick="addToCart(this);updateCart();">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
                               </div>
                            </div>
                            <div class="col-md-3 col-sm-6">
                               <div class="products">
-                                 <div class="offer">New</div>
                                  <div class="thumbnail"><a href="details3.html"><img src="images/products/small/products-02.png" alt="Product Name"></a></div>
-                                 <div class="productname">Sản phẩm 2021</div>
-                                 <h4 class="price">135.000 VND</h4>
-                                 <div class="button_group"><button class="button add-cart" type="button">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
+                                 <div class="productname"></br></br>Sản phẩm 2021</div>
+                                 <h4 class="price">135000 VND</h4>
+                                 <div class="button_group"><button class="button add-cart" type="button" onclick="addToCart(this);updateCart();">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
                               </div>
                            </div>
                            <div class="col-md-3 col-sm-6">
                               <div class="products">
                                  <div class="thumbnail"><a href="details4.html"><img src="images/products/small/products-03.png" alt="Product Name"></a></div>
-                                 <div class="productname">Sản phẩm 2021</div>
-                                 <h4 class="price">250.000 VNĐ</h4>
-                                 <div class="button_group"><button class="button add-cart" type="button">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
+                                 <div class="productname"></br></br>Sản phẩm 2021</div>
+                                 <h4 class="price">250000 VNĐ</h4>
+                                 <div class="button_group"><button class="button add-cart" type="button" onclick="addToCart(this);updateCart();">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
                               </div>
                            </div>
                         </div>
@@ -243,36 +215,34 @@
                         <div class="row">
                            <div class="col-md-3 col-sm-6">
                               <div class="products">
-                                 <div class="offer">- %20</div>
                                  <div class="thumbnail"><a href="details5.html"><img src="images/products/small/products-05.png" alt="Product Name"></a></div>
-                                 <div class="productname">Sản phẩm 2021</div>
-                                 <h4 class="price">100.000 VNĐ</h4>
-                                 <div class="button_group"><button class="button add-cart" type="button">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
+                                 <div class="productname"></br></br>Sản phẩm 2021</div>
+                                 <h4 class="price">100000 VNĐ</h4>
+                                 <div class="button_group"><button class="button add-cart" type="button" onclick="addToCart(this);updateCart();">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
                               </div>
                            </div>
                            <div class="col-md-3 col-sm-6">
                               <div class="products">
                                  <div class="thumbnail"><a href="details6.html"><img src="images/products/small/products-06.png" alt="Product Name"></a></div>
-                                 <div class="productname">Sản phẩm 2021</div>
-                                 <h4 class="price">300.000 VNĐ</h4>
-                                 <div class="button_group"><button class="button add-cart" type="button">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
+                                 <div class="productname"></br></br>Sản phẩm 2021</div>
+                                 <h4 class="price">300000 VNĐ</h4>
+                                 <div class="button_group"><button class="button add-cart" type="button" onclick="addToCart(this);updateCart();">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
                               </div>
                            </div>
                            <div class="col-md-3 col-sm-6">
                               <div class="products">
-                                 <div class="offer">New</div>
                                  <div class="thumbnail"><a href="details7.html"><img src="images/products/small/products-07.png" alt="Product Name"></a></div>
-                                 <div class="productname">Sản phẩm 2021</div>
-                                 <h4 class="price">320.000 VNĐ</h4>
-                                 <div class="button_group"><button class="button add-cart" type="button">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
+                                 <div class="productname"></br></br>Sản phẩm 2021</div>
+                                 <h4 class="price">320000 VNĐ</h4>
+                                 <div class="button_group"><button class="button add-cart" type="button" onclick="addToCart(this);updateCart();">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
                               </div>
                            </div>
                            <div class="col-md-3 col-sm-6">
                               <div class="products">
                                  <div class="thumbnail"><a href="details8.html"><img src="images/products/small/products-08.png" alt="Product Name"></a></div>
-                                 <div class="productname">Sản phẩm 2021</div>
-                                 <h4 class="price">167.000 VNĐ</h4>
-                                 <div class="button_group"><button class="button add-cart" type="button">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
+                                 <div class="productname"></br></br>Sản phẩm 2021</div>
+                                 <h4 class="price">167000 VNĐ</h4>
+                                 <div class="button_group"><button class="button add-cart" type="button" onclick="addToCart(this);updateCart();">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
                               </div>
                            </div>
                         </div>
@@ -289,34 +259,33 @@
                            <div class="col-md-3 col-sm-6">
                               <div class="products">
                                  <div class="thumbnail"><a href="details.html"><img src="images/products/small/products-09.png" alt="Product Name"></a></div>
-                                 <div class="productname">Sản phẩm 2021</div>
-                                 <h4 class="price">400.000 VNĐ</h4>
-                                 <div class="button_group"><button class="button add-cart" type="button">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
+                                 <div class="productname"></br></br>Sản phẩm 2021</div>
+                                 <h4 class="price">400000 VNĐ</h4>
+                                 <div class="button_group"><button class="button add-cart" type="button" onclick="addToCart(this);updateCart();">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
                               </div>
                            </div>
                            <div class="col-md-3 col-sm-6">
                               <div class="products">
                                  <div class="thumbnail"><a href="details.html"><img src="images/products/small/products-10.png" alt="Product Name"></a></div>
-                                 <div class="productname">Sản phẩm 2021</div>
-                                 <h4 class="price">312.000 VNĐ</h4>
-                                 <div class="button_group"><button class="button add-cart" type="button">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
+                                 <div class="productname"></br></br>Sản phẩm 2021</div>
+                                 <h4 class="price">312000 VNĐ</h4>
+                                 <div class="button_group"><button class="button add-cart" type="button" onclick="addToCart(this);updateCart();">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
                               </div>
                            </div>
                            <div class="col-md-3 col-sm-6">
                               <div class="products">
-                                 <div class="offer">New</div>
                                  <div class="thumbnail"><a href="details.html"><img src="images/products/small/products-11.png" alt="Product Name"></a></div>
-                                 <div class="productname">Sản phẩm 2021</div>
-                                 <h4 class="price">505.000 VNĐ</h4>
-                                 <div class="button_group"><button class="button add-cart" type="button">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
+                                 <div class="productname"></br></br>Sản phẩm 2021</div>
+                                 <h4 class="price">505000 VNĐ</h4>
+                                 <div class="button_group"><button class="button add-cart" type="button" onclick="addToCart(this);updateCart();">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
                               </div>
                            </div>
                            <div class="col-md-3 col-sm-6">
                               <div class="products">
                                  <div class="thumbnail"><a href="details.html"><img src="images/products/small/products-12.png" alt="Product Name"></a></div>
-                                 <div class="productname">Sản phẩm 2021</div>
-                                 <h4 class="price">910.000 VNĐ</h4>
-                                 <div class="button_group"><button class="button add-cart" type="button">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
+                                 <div class="productname"></br></br>Sản phẩm 2021</div>
+                                 <h4 class="price">910000 VNĐ</h4>
+                                 <div class="button_group"><button class="button add-cart" type="button" onclick="addToCart(this);updateCart();">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
                               </div>
                            </div>
                         </div>
@@ -326,33 +295,33 @@
                            <div class="col-md-3 col-sm-6">
                               <div class="products">
                                  <div class="thumbnail"><a href="details.html"><img src="images/products/small/products-13.png" alt="Product Name"></a></div>
-                                 <div class="productname">Sản phẩm 2021</div>
-                                 <h4 class="price">168.000 VNĐ</h4>
-                                 <div class="button_group"><button class="button add-cart" type="button">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
+                                 <div class="productname"></br></br>Sản phẩm 2021</div>
+                                 <h4 class="price">168000 VNĐ</h4>
+                                 <div class="button_group"><button class="button add-cart" type="button" onclick="addToCart(this);updateCart();">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
                               </div>
                            </div>
                            <div class="col-md-3 col-sm-6">
                               <div class="products">
                                  <div class="thumbnail"><a href="details.html"><img src="images/products/small/products-14.png" alt="Product Name"></a></div>
-                                 <div class="productname">Sản phẩm 2021</div>
-                                 <h4 class="price">50.000 VNĐ</h4>
-                                 <div class="button_group"><button class="button add-cart" type="button">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
+                                 <div class="productname"></br></br>Sản phẩm 2021</div>
+                                 <h4 class="price">50000 VNĐ</h4>
+                                 <div class="button_group"><button class="button add-cart" type="button" onclick="addToCart(this);updateCart();">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
                               </div>
                            </div>
                            <div class="col-md-3 col-sm-6">
                               <div class="products">
                                  <div class="thumbnail"><a href="details.html"><img src="images/products/small/products-15.png" alt="Product Name"></a></div>
-                                 <div class="productname">Sản phẩm 2021</div>
-                                 <h4 class="price">760.000 VNĐ</h4>
-                                 <div class="button_group"><button class="button add-cart" type="button">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
+                                 <div class="productname"></br></br>Sản phẩm 2021</div>
+                                 <h4 class="price">760000 VNĐ</h4>
+                                 <div class="button_group"><button class="button add-cart" type="button" onclick="addToCart(this);updateCart();">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
                               </div>
                            </div>
                            <div class="col-md-3 col-sm-6">
                               <div class="products">
                                  <div class="thumbnail"><a href="details.html"><img src="images/products/small/products-16.png" alt="Product Name"></a></div>
-                                 <div class="productname">Sản phẩm 2021</div>
-                                 <h4 class="price">56.000 VNĐ</h4>
-                                 <div class="button_group"><button class="button add-cart" type="button">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
+                                 <div class="productname"></br></br>Sản phẩm 2021</div>
+                                 <h4 class="price">56000 VNĐ</h4>
+                                 <div class="button_group"><button class="button add-cart" type="button" onclick="addToCart(this);updateCart();">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
                               </div>
                            </div>
                         </div>
