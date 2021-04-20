@@ -5,12 +5,20 @@ function updateCart(){
 }
 function updatePrice(){
 	var total = 0;
-	for (var i = 0; i < document.getElementsByClassName('cart-item').length; i++) {
-	 	total += parseInt(document.getElementsByClassName('cart-item')[i].children[2].children[0].innerHTML);
+	var x = document.getElementsByClassName('cart-item');
+	for (var i = 0; i < x.length; i++) {
+	 	total += parseInt(x[i].children[2].children[0].textContent)*parseInt(x[i].children[1].children[1].children[0].textContent);
 	}
-	document.getElementById("total-price").innerHTML=total
+	document.getElementById("total-price").textContent=total
 }
 function addToCart(item){
+	var x = document.getElementsByClassName('cart-item');
+	for (var i = 0; i < x.length; i++) {
+		if (item.parentElement.parentElement.children[1].textContent ===x[i].children[1].children[0].textContent) {
+			x[i].children[1].children[1].children[0].textContent =parseInt(x[i].children[1].children[1].children[0].textContent) +1;
+			return;
+		}
+	}
 	var liClass = document.createElement("li");
 	var DivContainer = document.createElement("div");
 
@@ -26,12 +34,12 @@ function addToCart(item){
 
 	var dis = document.createElement("p");
 	dis.setAttribute("class","name");
-	dis.innerHTML="sản phẩm clgt";	
+	dis.innerHTML=item.parentElement.parentElement.children[1].textContent;	
 	var dos = document.createElement("p");
 	dos.innerHTML="Quantity: ";
 	var dus = document.createElement("span");
 	dus.setAttribute("class","light-red");
-	dus.innerHTML="01";
+	dus.innerHTML=1;
 	dos.appendChild(dus);
 
 	descripsion.appendChild(dis)
@@ -60,4 +68,7 @@ function addToCart(item){
 	DivContainer.appendChild(right);
 	liClass.appendChild(DivContainer);
 	document.getElementById("cart-list").appendChild(liClass);
+}
+function loginWindow(){
+	login = window.open("login1.html","login","width=600,height=800");
 }
