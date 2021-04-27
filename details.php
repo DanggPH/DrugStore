@@ -736,7 +736,7 @@ $sql = "SELECT a.*, avg(b.voted) vote, COUNT(b.ID) count\n"
                       <td> </div> </td>
                       <td> <div class="product-info"> </td>
                       <td>    <p> </td>
-                      <td>        <a href="details.html"> </td>
+                      <td>        <a href="details.php?id='.$item['id'].'"> </td>
                       <td>           '.$item['name'].' </td>
                           <td>    </a> </td>
                       <td> </p>   </td>

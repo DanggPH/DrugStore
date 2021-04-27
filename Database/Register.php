@@ -1,18 +1,18 @@
 <?php
 	session_start();
 	if(isset($_SESSION['userinfor'])) {
-		header('Location: ../../DrugStore-main/Database/Welcome.php');
+		header('Location:../index.php');
 		die();
 	}
 	if(!empty($_POST)) {
-		require_once('../../DrugStore-main/Database/dbhelper.php');	
+		require_once('dbhelper.php');	
 
 
 		$email = $fullname = $password = $confirmation_pwd = 
         $address1 = $address2 = $district = $phone = $city = '';
 
 
-		if(isset($_POST['fullname'])) {
+		if(isset($_POST['fullname'])) {	
 			$fullname = $_POST['fullname'];
 		}
 		if(isset($_POST['email'])) {
