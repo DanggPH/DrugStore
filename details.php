@@ -6,6 +6,7 @@ $fullname = '';
 if(isset($_SESSION['userinfor'])) {
 	$username = $_SESSION['userinfor'];
 	$fullname = $username['fullname'];
+  $email= $username['email'];
 }
 if(isset($_GET['id'])) {
   $id=$_GET['id'];
@@ -43,6 +44,8 @@ $sql = "SELECT a.*, avg(b.voted) vote, COUNT(b.ID) count\n"
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,500italic,100italic,100' rel='stylesheet' type='text/css'>
     <link href="css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" ></script>
     <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen"/>
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <!--[if lt IE 9]>
@@ -51,6 +54,20 @@ $sql = "SELECT a.*, avg(b.voted) vote, COUNT(b.ID) count\n"
 <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js">
 </script>
 <![endif]-->
+ <!-- Bootstrap core JavaScript==================================================-->
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+	  <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+	  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+	  <script type="text/javascript" src="js/jquery.sequence-min.js"></script>
+	  <script type="text/javascript" src="js/jquery.carouFredSel-6.2.1-packed.js"></script>
+	  <script defer src="js/jquery.flexslider.js"></script>
+	  <script type="text/javascript" src="js/script.min2.js" ></script>
+    <script type="text/javascript" src="js/cart.js"></script>
+    <style>
+    .top-space{
+      margin-top: 7% !important;
+    }
+    </style>
   </head>
   <body>
     <div class="wrapper">
@@ -403,6 +420,7 @@ $sql = "SELECT a.*, avg(b.voted) vote, COUNT(b.ID) count\n"
                         ?>
                       </select>
                     </div>
+                    
                     <div class="button_group">
                       <button class="button" onclick="addToCart(this);updateCart();" >
                         Thêm vào giỏ
@@ -429,6 +447,38 @@ $sql = "SELECT a.*, avg(b.voted) vote, COUNT(b.ID) count\n"
               </div>
               <div class="clearfix">
               </div>
+
+<script>
+$(document).ready(function(){
+    // Hàm active tab nào đó
+    function activeTab(obj)
+    {
+        // Xóa class active tất cả các tab
+        $('.tab-box #tabnav ul li').removeClass('active');
+ 
+        // Thêm class active vòa tab đang click
+        $(obj).addClass('active');
+ 
+        // Lấy href của tab để show content tương ứng
+        var id = $(obj).find('a').attr('href');
+ 
+        // Ẩn hết nội dung các tab đang hiển thị
+        $('.tab').hide();
+ 
+        // Hiển thị nội dung của tab hiện tại
+        $(id) .show();
+    }
+ 
+    // Sự kiện click đổi tab
+    $('#tabnav li').click(function(){
+        activeTab(this);
+        return false;
+    });
+ 
+    // Active tab đầu tiên khi trang web được chạy
+    activeTab($('#tabnav li:first-child'));
+});
+</script>
               <div class="tab-box">
                 <div id="tabnav">
                   <ul>
@@ -444,14 +494,14 @@ $sql = "SELECT a.*, avg(b.voted) vote, COUNT(b.ID) count\n"
                     </li>
                   </ul>
                 </div>
-                <div class="tab-content-wrap">
-                  <div class="tab-content" id="Descraption">
+                <div class="tab-content top-space">
+                  <div class="tab" id="Descraption">
                     <p>
                       <?=$product['des_product']?>
                     </p>
                   </div>
-                  <div class="tab-content" id="Reviews">
-                    <form>
+                  <div class="tab" id="Reviews">
+                    <form method="POST" action="js/upcomment.php">
                       <table>
                         <thead>
                           <tr>
@@ -481,19 +531,19 @@ $sql = "SELECT a.*, avg(b.voted) vote, COUNT(b.ID) count\n"
                               Quality
                             </td>
                             <td>
-                              <input type="radio" name="quality" value="Blue"/>
+                              <input type="radio" name="quality" value="1"/>
                             </td>
                             <td>
-                              <input type="radio" name="quality" value="">
+                              <input type="radio" name="quality" value="2">
                             </td>
                             <td>
-                              <input type="radio" name="quality" value="">
+                              <input type="radio" name="quality" value="3">
                             </td>
                             <td>
-                              <input type="radio" name="quality" value="">
+                              <input type="radio" name="quality" value="4">
                             </td>
                             <td>
-                              <input type="radio" name="quality" value="">
+                              <input type="radio" name="quality" value="5">
                             </td>
                           </tr>
                           <tr>
@@ -501,19 +551,19 @@ $sql = "SELECT a.*, avg(b.voted) vote, COUNT(b.ID) count\n"
                               Price
                             </td>
                             <td>
-                              <input type="radio" name="price" value="">
+                              <input type="radio" name="price" value="1">
                             </td>
                             <td>
-                              <input type="radio" name="price" value="">
+                              <input type="radio" name="price" value="2">
                             </td>
                             <td>
-                              <input type="radio" name="price" value="">
+                              <input type="radio" name="price" value="3">
                             </td>
                             <td>
-                              <input type="radio" name="price" value="">
+                              <input type="radio" name="price" value="4">
                             </td>
                             <td>
-                              <input type="radio" name="price" value="">
+                              <input type="radio" name="price" value="5">
                             </td>
                           </tr>
                           <tr>
@@ -521,64 +571,87 @@ $sql = "SELECT a.*, avg(b.voted) vote, COUNT(b.ID) count\n"
                               Value
                             </td>
                             <td>
-                              <input type="radio" name="value" value="">
+                              <input type="radio" name="value" value="1">
                             </td>
                             <td>
-                              <input type="radio" name="value" value="">
+                              <input type="radio" name="value" value="2">
                             </td>
                             <td>
-                              <input type="radio" name="value" value="">
+                              <input type="radio" name="value" value="3">
                             </td>
                             <td>
-                              <input type="radio" name="value" value="">
+                              <input type="radio" name="value" value="4">
                             </td>
                             <td>
-                              <input type="radio" name="value" value="">
+                              <input type="radio" name="value" value="5">
                             </td>
                           </tr>
                         </tbody>
                       </table>
                       <div class="row">
                         <div class="col-md-6 col-sm-6">
-                          <div class="form-row">
-                            <label class="lebel-abs">
-                              Your Name 
-                              <strong class="red">
+                          <div class="form-row"> 
+                            <label class="lebel-abs">  
+                            Họ tên:   
+                              <!-- tự fill full name và disable form khi đã đăng nhập -->                       
+                              <?php
+                              if(isset($fullname) and $fullname!='') $statusname=' value="'.$fullname.'" readonly';
+                              else {
+                                $statusname='';
+                                echo '<tr> 
+                                <strong class="red">
                                 *
-                              </strong>
+                              </strong>  
+                                </tr>';
+                              }   
+                              ?>
                             </label>
-                            <input type="text" name="" class="input namefild">
+
+                            <input type="text" id="fullname" name="fullname" class="input namefild"  <?php echo $statusname;?>>
                           </div>
                           <div class="form-row">
                             <label class="lebel-abs">
                               Your Email 
-                              <strong class="red">
+                              <!-- tự fill email -->
+                              <?php
+                              if(isset($email) and $email!='') $statusemail=' value="'.$email.'" readonly';
+                              else {
+                                $statusemail='';
+                                echo '<tr>
+                                <strong class="red">
                                 *
                               </strong>
+                                </tr>';
+                              }
+                              ?>
                             </label>
-                            <input type="email" name="" class="input emailfild">
+                            <input type="email" name="email" id="email" class="input emailfild" <?php echo $statusemail;?>>
                           </div>
                           <div class="form-row">
                             <label class="lebel-abs">
-                              Summary of You Review 
+                              Tóm tắt 
                               <strong class="red">
                                 *
                               </strong>
                             </label>
-                            <input type="text" name="" class="input summeryfild">
+                            <input type="text" name="summary" class="input summeryfild">
                           </div>
                         </div>
                         <div class="col-md-6 col-sm-6">
                           <div class="form-row">
                             <label class="lebel-abs">
-                              Your Name 
-                              <strong class="red">
-                                *
-                              </strong>
+                              Đánh giá chi tiết
                             </label>
-                            <textarea class="input textareafild" name="" rows="7" >
+                            <textarea class="input textareafild" name="content" rows="7" >
                             </textarea>
                           </div>
+                          <input type="hidden" name="idproduct" value="<?=$id?>">
+                          <input type="hidden" name="idCus" value="<?=$username['ID']?>">
+                          <?php  if(isset($_SESSION['notify'])) {
+                            echo $_SESSION['notify'];
+                            unset($_SESSION['notify']);
+                          }
+                            ?>
                           <div class="form-row">
                             <input type="submit" value="Submit" class="button">
                           </div>
@@ -586,63 +659,59 @@ $sql = "SELECT a.*, avg(b.voted) vote, COUNT(b.ID) count\n"
                       </div>
                     </form>
                   </div>
-                  <div class="tab-content" >
-                    <div class="review">
-                      <p class="rating">
-                        <i class="fa fa-star light-red">
-                        </i>
-                        <i class="fa fa-star light-red">
-                        </i>
-                        <i class="fa fa-star light-red">
-                        </i>
-                        <i class="fa fa-star-half-o gray">
-                        </i>
-                        <i class="fa fa-star-o gray">
-                        </i>
-                      </p>
-                      <h5 class="reviewer">
-                        Reviewer name
-                      </h5>
-                      <p class="review-date">
-                        Date: 01-01-2014
-                      </p>
-                      <p>
-                        Tiết kiệm hơn - Sống khỏe hơn
-                      </p>
-                    </div>
-                    <div class="review">
-                      <p class="rating">
-                        <i class="fa fa-star light-red">
-                        </i>
-                        <i class="fa fa-star light-red">
-                        </i>
-                        <i class="fa fa-star light-red">
-                        </i>
-                        <i class="fa fa-star-half-o gray">
-                        </i>
-                        <i class="fa fa-star-o gray">
-                        </i>
-                      </p>
-                      <h5 class="reviewer">
-                        Reviewer name
-                      </h5>
-                      <p class="review-date">
-                        Date: 01-01-2014
-                      </p>
-                      <p>
-                        Tiết kiệm hơn - Sống khỏe hơn
-                      </p>
-                    </div>
-                  </div>
-                  <div class="tab-content" id="tags">
-                    <div class="tag">
-                      Add Tags : 
-                      <input type="text" name="">
-                      <input type="submit" value="Tag">
-                    </div>
-                  </div>
                 </div>
-              </div>
+                <!-- hiện thị bình luận sản phẩm -->
+                <?php
+                $sql = 'SELECT * FROM comment  WHERE Idproduct='.$id.' ORDER BY create_at DESC';
+                $listcomment=executeResult($sql);
+                foreach ($listcomment as $item) {
+                  echo '<tr>
+                    <div class="tab-content">
+                    <div class="row">
+                      <div class="col-md-9">
+                        <h5 class="reviewer">
+                          '.$item['fullname'].'
+                        </h5>
+                        <p class="review-date">
+                          Date: '.$item['create_at'].'
+                        </p>
+                        <p>
+                          <b>Tóm tắt:</b>&nbsp'.$item['summary'].'
+                          <br><b>Nội dung:</b>&nbsp'.$item['content'].'
+                        </p>
+                      </div>
+                      <div class="col-md-2">
+                      <p class="rating">';
+                      for ($i=1; $i <= round($item['voted']); $i++) { 
+                        echo '<i class="fa fa-star light-red">
+                          </i>';
+                      }  
+                      for ($i=5; $i > round($item['voted']) and $i>0; $i--) { 
+                        echo '<i class="fa fa-star-o gray">
+                        </i>';
+                      }                     
+                      echo'</p>';
+                      if($username['ID']==$item['IDaccount']) echo ' <button onclick="deleteComment('.$item['ID'].','.$item['IDaccount'].')">Xóa</button>';
+                      echo'</div>
+                        </div>
+                      </div>
+                        </tr>';
+                }
+                ?>
+<script type="text/javascript">
+  function deleteComment(id,userid) {
+    var option = confirm('Bạn có chắc chắn muốn xoá danh mục này không?')
+    if(!option) {
+      return;
+    }
+    console.log(id)
+    //ajax - lenh post
+    $.post('js/deleteowncomment.php',{'id' : id, 'userid' : userid},
+     function(data) {
+      location.reload()
+    });
+  }
+</script>
               <div class="clearfix">
               </div>
               <div id="productsDetails" class="hot-products">
@@ -714,6 +783,7 @@ $sql = "SELECT a.*, avg(b.voted) vote, COUNT(b.ID) count\n"
               </div>
               <div class="clearfix">
               </div>
+            </div>
             </div>
             <div class="col-md-3">
               <div class="special-deal leftbar">
@@ -983,18 +1053,5 @@ $sql = "SELECT a.*, avg(b.voted) vote, COUNT(b.ID) count\n"
         </div>
       </div>
     </div>
-    <!-- Bootstrap core JavaScript==================================================-->
-    <script type="text/javascript" src="js/jquery-1.10.2.min.js">
-    </script>
-    <script type="text/javascript" src="js/bootstrap.min.js">
-    </script>
-    <script defer src="js/jquery.flexslider.js">
-    </script>
-    <script type="text/javascript" src="js/jquery.carouFredSel-6.2.1-packed.js">
-    </script>
-    <script type="text/javascript" src='js/jquery.elevatezoom.js'>
-    </script>
-    <script type="text/javascript" src="js/script.min.js" >
-    </script>
   </body>
 </html>

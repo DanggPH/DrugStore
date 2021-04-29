@@ -263,7 +263,7 @@ if(isset($_SESSION['userinfor'])) {
                               <div class="thumbnail"><a href="details.php?id='.$item['id'].'"><img src="admin/images/'.$item['image'].'" alt="Product Name"></a></div>
                               <div class="productname">'.$item['name'].'</div>
                               <h4 class="price">'.$item['price'].' VNĐ</h4>
-                              <div class="button_group"><button class="button add-cart" type="button">Thêm vào giỏ</button><button class="button compare" onclick="addToCart(this);updateCart();" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
+                              <div class="button_group"><button class="button add-cart" type="button" onclick="addToCart(this);updateCart();">Thêm vào giỏ</button><button class="button compare" onclick="addToCart(this);updateCart();" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
                            </div>
                         </div>
                         </tr>';
