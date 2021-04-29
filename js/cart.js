@@ -46,16 +46,15 @@ function addToCart(item){
 	descripsion.appendChild(dis)
 	descripsion.appendChild(dos);
 
-
 	var right = document.createElement("div");
 	right.setAttribute("class","right");
 	var das = document.createElement("p");
 	das.setAttribute("class","price");
 	das.innerHTML=item.parentElement.parentElement.children[2].innerHTML;
 	var ref = document.createElement("a");
-	ref.setAttribute("href","#");
+	ref.setAttribute("onMouseOver","this.style.cursor='pointer'")
 	ref.setAttribute("class","remove");
-	ref.setAttribute("onclick","this.parentElement.parentElement.parentElement.remove();");
+	ref.setAttribute("onclick","this.parentElement.parentElement.parentElement.remove();updateCart()");
 	var aimg = document.createElement("img");
 	aimg.setAttribute("src","images/remove.png");
 	aimg.setAttribute("alt","remove");

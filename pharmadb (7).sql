@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 27, 2021 lúc 01:07 PM
+-- Thời gian đã tạo: Th4 29, 2021 lúc 05:02 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `pharmadb`
 --
+CREATE DATABASE IF NOT EXISTS `pharmadb` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `pharmadb`;
 
 -- --------------------------------------------------------
 
@@ -27,14 +29,16 @@ SET time_zone = "+00:00";
 -- Cấu trúc bảng cho bảng `accountad`
 --
 
-CREATE TABLE `accountad` (
+DROP TABLE IF EXISTS `accountad`;
+CREATE TABLE IF NOT EXISTS `accountad` (
   `username` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `fullname` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `birthday` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `sex` tinyint(1) NOT NULL,
-  `level` int(1) NOT NULL
+  `level` int(1) NOT NULL,
+  PRIMARY KEY (`username`,`password`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -51,8 +55,9 @@ INSERT INTO `accountad` (`username`, `password`, `email`, `fullname`, `birthday`
 -- Cấu trúc bảng cho bảng `accountcus`
 --
 
-CREATE TABLE `accountcus` (
-  `ID` int(11) NOT NULL,
+DROP TABLE IF EXISTS `accountcus`;
+CREATE TABLE IF NOT EXISTS `accountcus` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `usernameCus` char(50) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `avatar` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -61,8 +66,9 @@ CREATE TABLE `accountcus` (
   `sex` tinyint(1) NOT NULL,
   `phonenumber` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `accountcus`
@@ -78,14 +84,20 @@ INSERT INTO `accountcus` (`ID`, `usernameCus`, `password`, `avatar`, `email`, `f
 -- Cấu trúc bảng cho bảng `address`
 --
 
-CREATE TABLE `address` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `address`;
+CREATE TABLE IF NOT EXISTS `address` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `idCus` int(11) NOT NULL,
   `province` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
   `district` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
   `wards` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
-  `street` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `street` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_province` (`province`),
+  KEY `fk_district` (`district`),
+  KEY `fk_wards` (`wards`),
+  KEY `fk_IdCusAdr` (`idCus`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `address`
@@ -100,13 +112,15 @@ INSERT INTO `address` (`id`, `idCus`, `province`, `district`, `wards`, `street`)
 -- Cấu trúc bảng cho bảng `brands`
 --
 
-CREATE TABLE `brands` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `brands`;
+CREATE TABLE IF NOT EXISTS `brands` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `logolink` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`,`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `brands`
@@ -127,24 +141,33 @@ INSERT INTO `brands` (`id`, `name`, `logolink`, `created_at`, `updated_at`) VALU
 -- Cấu trúc bảng cho bảng `comment`
 --
 
-CREATE TABLE `comment` (
-  `ID` int(11) NOT NULL,
-  `IDaccount` int(11) NOT NULL,
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE IF NOT EXISTS `comment` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `fullname` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `IDaccount` int(11) DEFAULT NULL,
   `idproduct` int(11) NOT NULL,
+  `summary` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `content` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
   `voted` decimal(2,1) DEFAULT NULL,
   `create_at` datetime NOT NULL,
-  `update_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  PRIMARY KEY (`ID`),
+  KEY `fk_comment` (`idproduct`),
+  KEY `fk_idcus` (`IDaccount`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `comment`
 --
 
-INSERT INTO `comment` (`ID`, `IDaccount`, `idproduct`, `content`, `voted`, `create_at`, `update_at`) VALUES
-(9, 2, 36, 'àgdfesry', '1.0', '2021-04-23 14:47:38', '2021-04-23 14:47:38'),
-(10, 2, 37, 'wqrfwqfdwqf', '2.0', '2021-04-26 21:16:27', '2021-04-26 21:16:27'),
-(11, 2, 36, 'wetgewgf', '4.0', '2021-04-26 21:19:58', '2021-04-26 21:19:58');
+INSERT INTO `comment` (`ID`, `email`, `fullname`, `IDaccount`, `idproduct`, `summary`, `content`, `voted`, `create_at`) VALUES
+(10, '', '', 2, 37, '', 'wqrfwqfdwqf', '2.0', '2021-04-26 21:16:27'),
+(11, '', '', 2, 36, '', 'wetgewgf', '4.0', '2021-04-26 21:19:58'),
+(14, 'qtoan1807@gmail.com', 'Võ Quốc Toàn', 3, 40, 'hư db', 'N cứt', '4.0', '0000-00-00 00:00:00'),
+(15, 'qtoan1807@gmail.com', 'Võ Quốc Toàn', NULL, 40, 'hư db', 'N cứt', '4.0', '0000-00-00 00:00:00'),
+(16, 'vqtoan1807@gmail.com', 'Võ Quốc Toàn', 3, 40, 'sâfafa', ' ', '5.0', '2021-04-29 16:54:41'),
+(17, 'vqtoan1807@gmail.com', 'Võ Quốc Toàn', 3, 40, 'gfdgdfhgdfh', '                            ', '1.0', '2021-04-29 16:55:42');
 
 -- --------------------------------------------------------
 
@@ -152,11 +175,13 @@ INSERT INTO `comment` (`ID`, `IDaccount`, `idproduct`, `content`, `voted`, `crea
 -- Cấu trúc bảng cho bảng `devvn_quanhuyen`
 --
 
-CREATE TABLE `devvn_quanhuyen` (
+DROP TABLE IF EXISTS `devvn_quanhuyen`;
+CREATE TABLE IF NOT EXISTS `devvn_quanhuyen` (
   `maqh` varchar(5) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `type` varchar(30) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
-  `matp` varchar(5) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+  `matp` varchar(5) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`maqh`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -878,10 +903,12 @@ INSERT INTO `devvn_quanhuyen` (`maqh`, `name`, `type`, `matp`) VALUES
 -- Cấu trúc bảng cho bảng `devvn_tinhthanhpho`
 --
 
-CREATE TABLE `devvn_tinhthanhpho` (
+DROP TABLE IF EXISTS `devvn_tinhthanhpho`;
+CREATE TABLE IF NOT EXISTS `devvn_tinhthanhpho` (
   `matp` varchar(5) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `type` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+  `type` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`matp`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 --
@@ -959,11 +986,13 @@ INSERT INTO `devvn_tinhthanhpho` (`matp`, `name`, `type`) VALUES
 -- Cấu trúc bảng cho bảng `devvn_xaphuongthitran`
 --
 
-CREATE TABLE `devvn_xaphuongthitran` (
+DROP TABLE IF EXISTS `devvn_xaphuongthitran`;
+CREATE TABLE IF NOT EXISTS `devvn_xaphuongthitran` (
   `xaid` varchar(5) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `type` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `maqh` varchar(5) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+  `maqh` varchar(5) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`xaid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -11601,10 +11630,13 @@ INSERT INTO `devvn_xaphuongthitran` (`xaid`, `name`, `type`, `maqh`) VALUES
 -- Cấu trúc bảng cho bảng `orderdetail`
 --
 
-CREATE TABLE `orderdetail` (
+DROP TABLE IF EXISTS `orderdetail`;
+CREATE TABLE IF NOT EXISTS `orderdetail` (
   `Idodertable` int(11) NOT NULL,
   `idproduct` int(11) NOT NULL,
-  `quality` int(11) NOT NULL
+  `quality` int(11) NOT NULL,
+  PRIMARY KEY (`Idodertable`,`idproduct`),
+  KEY `fk_IdProduct` (`idproduct`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -11620,13 +11652,17 @@ INSERT INTO `orderdetail` (`Idodertable`, `idproduct`, `quality`) VALUES
 -- Cấu trúc bảng cho bảng `ordertable`
 --
 
-CREATE TABLE `ordertable` (
-  `ID` int(11) NOT NULL,
+DROP TABLE IF EXISTS `ordertable`;
+CREATE TABLE IF NOT EXISTS `ordertable` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `IDcus` int(11) NOT NULL,
   `idAddress` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `fk_idCusOder` (`IDcus`),
+  KEY `fk_address` (`idAddress`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `ordertable`
@@ -11645,8 +11681,9 @@ INSERT INTO `ordertable` (`ID`, `IDcus`, `idAddress`, `created_at`, `status`) VA
 -- Cấu trúc bảng cho bảng `product`
 --
 
-CREATE TABLE `product` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `product`;
+CREATE TABLE IF NOT EXISTS `product` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `brandid` int(11) NOT NULL,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `des_product` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -11655,8 +11692,10 @@ CREATE TABLE `product` (
   `image` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   `amount` int(11) NOT NULL,
   `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_brandid` (`brandid`)
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `product`
@@ -11671,126 +11710,6 @@ INSERT INTO `product` (`id`, `brandid`, `name`, `des_product`, `price`, `price_o
 (41, 17, 'dsadf', NULL, 231, 3123, 'logo.png', 2, '2021-04-25 06:48:43', '2021-04-25 06:48:43'),
 (42, 17, 'gjhgfhj', NULL, 231, 3123, 'logo.png', 2, '2021-04-25 06:48:43', '2021-04-25 06:48:43'),
 (44, 17, 'retret', NULL, 231, 3123, 'logo.png', 2, '2021-04-25 06:48:43', '2021-04-25 06:48:43');
-
---
--- Chỉ mục cho các bảng đã đổ
---
-
---
--- Chỉ mục cho bảng `accountad`
---
-ALTER TABLE `accountad`
-  ADD PRIMARY KEY (`username`,`password`);
-
---
--- Chỉ mục cho bảng `accountcus`
---
-ALTER TABLE `accountcus`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Chỉ mục cho bảng `address`
---
-ALTER TABLE `address`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_province` (`province`),
-  ADD KEY `fk_district` (`district`),
-  ADD KEY `fk_wards` (`wards`),
-  ADD KEY `fk_IdCusAdr` (`idCus`);
-
---
--- Chỉ mục cho bảng `brands`
---
-ALTER TABLE `brands`
-  ADD PRIMARY KEY (`id`,`name`);
-
---
--- Chỉ mục cho bảng `comment`
---
-ALTER TABLE `comment`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `fk_comment` (`idproduct`),
-  ADD KEY `fk_idcus` (`IDaccount`);
-
---
--- Chỉ mục cho bảng `devvn_quanhuyen`
---
-ALTER TABLE `devvn_quanhuyen`
-  ADD PRIMARY KEY (`maqh`);
-
---
--- Chỉ mục cho bảng `devvn_tinhthanhpho`
---
-ALTER TABLE `devvn_tinhthanhpho`
-  ADD PRIMARY KEY (`matp`);
-
---
--- Chỉ mục cho bảng `devvn_xaphuongthitran`
---
-ALTER TABLE `devvn_xaphuongthitran`
-  ADD PRIMARY KEY (`xaid`);
-
---
--- Chỉ mục cho bảng `orderdetail`
---
-ALTER TABLE `orderdetail`
-  ADD PRIMARY KEY (`Idodertable`,`idproduct`),
-  ADD KEY `fk_IdProduct` (`idproduct`);
-
---
--- Chỉ mục cho bảng `ordertable`
---
-ALTER TABLE `ordertable`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `fk_idCusOder` (`IDcus`),
-  ADD KEY `fk_address` (`idAddress`);
-
---
--- Chỉ mục cho bảng `product`
---
-ALTER TABLE `product`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_brandid` (`brandid`);
-
---
--- AUTO_INCREMENT cho các bảng đã đổ
---
-
---
--- AUTO_INCREMENT cho bảng `accountcus`
---
-ALTER TABLE `accountcus`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT cho bảng `address`
---
-ALTER TABLE `address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT cho bảng `brands`
---
-ALTER TABLE `brands`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT cho bảng `comment`
---
-ALTER TABLE `comment`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT cho bảng `ordertable`
---
-ALTER TABLE `ordertable`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT cho bảng `product`
---
-ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
