@@ -646,7 +646,7 @@ $(document).ready(function(){
                             </textarea>
                           </div>
                           <input type="hidden" name="idproduct" value="<?=$id?>">
-                          <input type="hidden" name="idCus" value="<?=$username['ID']?>">
+                          <?php if(isset($username)) echo '<input type="hidden" name="idCus" value="'.$username['ID'].'">';?>
                           <?php  if(isset($_SESSION['notify'])) {
                             echo $_SESSION['notify'];
                             unset($_SESSION['notify']);
@@ -691,7 +691,8 @@ $(document).ready(function(){
                         </i>';
                       }                     
                       echo'</p>';
-                      if($username['ID']==$item['IDaccount']) echo ' <button onclick="deleteComment('.$item['ID'].','.$item['IDaccount'].')">Xóa</button>';
+                      if(isset($username)){
+                      if($username['ID']==$item['IDaccount']) echo ' <button onclick="deleteComment('.$item['ID'].','.$item['IDaccount'].')">Xóa</button>';}
                       echo'</div>
                         </div>
                       </div>

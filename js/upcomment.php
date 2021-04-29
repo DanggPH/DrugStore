@@ -34,7 +34,7 @@ if(isset($_POST))
                 $sql = "INSERT INTO comment(idproduct, email, fullname, IDaccount, summary, content, voted, create_at) VALUES( ".$idproduct.", '".$email."', N'".$fullname."',".$idCus.", N'".$summary."', N'".$content."', ".$voted.",'".$created_at."')";
                 execute($sql);
                 header('Location: ../details.php?id='.$idproduct);
-                // $_SESSION['notify']=$sql;
+                $_SESSION['notify']=$sql;
             }else {
                 header('Location: ../details.php?id='.$idproduct);
                 $_SESSION['notify']=$alert;
