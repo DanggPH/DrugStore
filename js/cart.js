@@ -2,6 +2,7 @@ function updateCart(){
 	document.getElementsByClassName('cart_no')[0].innerHTML=document.getElementsByClassName('cart-item').length
 	var temp = document.getElementById("marker");
 	document.getElementById("cart-list").appendChild(temp);
+	sessionStorage.setItem("cart",document.getElementById("cart-list").innerHTML);
 }
 function updatePrice(){
 	var total = 0;
@@ -71,3 +72,8 @@ function addToCart(item){
 function loginWindow(){
 	login = window.open("login1.html","login","width=600,height=800");
 }
+setInterval(function (){ 
+    document.getElementById("cart-list").innerHTML=sessionStorage.getItem("cart");
+    updateCart();
+    updatePrice();
+}, 500);
