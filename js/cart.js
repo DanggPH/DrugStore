@@ -72,7 +72,10 @@ function addToCart(item){
 function loginWindow(){
 	login = window.open("login1.html","login","width=600,height=800");
 }
-setInterval(function (){ 
+setInterval(function (){
+	if(sessionStorage.getItem("cart")==null){
+		return;
+	}
     document.getElementById("cart-list").innerHTML=sessionStorage.getItem("cart");
     updateCart();
     updatePrice();
