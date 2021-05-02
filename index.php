@@ -90,7 +90,6 @@ if(isset($_SESSION['userinfor'])) {
                                        <li><a href="productlist.php">Danh sách sản phẩm</a></li>
                                        <li><a href="cart.php">Giỏ hàng </a></li>
                                        <li><a href="checkout.php">CheckOut</a></li>
-                                       <li><a href="checkout2.php">CheckOut2</a></li>
                                        <li><a href="contact.php">Liên hệ</a></li>
                                     </ul>
                                  </div>

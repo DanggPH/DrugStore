@@ -202,161 +202,43 @@ if(isset($_SESSION['email'])) $email=$_SESSION['email']; else $email='';
                                     </button>
                                 </div>
                                 <div class="navbar-collapse collapse">
-                                    <ul class="nav navbar-nav">
-                                        <li class="active dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                Trang chủ
-                                            </a>
-                                            <div class="dropdown-menu">
-                                                <ul class="mega-menu-links">
-                                                    <li>
-                                                        <a href="index.html">
-                                                            home
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="home2.html">
-                                                            home2
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="home3.html">
-                                                            home3
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="productlitst.html">
-                                                            Productlitst
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="productgird.html">
-                                                            Productgird
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="details.html">
-                                                            Details
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="cart.html">
-                                                            Cart
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="checkout.html">
-                                                            CheckOut
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="checkout2.html">
-                                                            CheckOut2
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="contact.html">
-                                                            contact
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="productgird.html">
-                                                Sale
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="productlitst.html">
-                                                Tư vấn thuốc
-                                            </a>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                Blog
-                                            </a>
-                                            <div class="dropdown-menu mega-menu">
-                                                <div class="row">
-                                                    <div class="col-md-6 col-sm-6">
-                                                        <ul class="mega-menu-links">
-                                                            <li>
-                                                                <a href="productgird.html">
-                                                                    New Collection
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="productgird.html">
-                                                                    Shirts & tops
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="productgird.html">
-                                                                    Laptop & Brie
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="productgird.html">
-                                                                    Dresses
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="productgird.html">
-                                                                    Blazers & Jackets
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="productgird.html">
-                                                                    Shoulder Bags
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-md-6 col-sm-6">
-                                                        <ul class="mega-menu-links">
-                                                            <li>
-                                                                <a href="productgird.html">
-                                                                    New Collection
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="productgird.html">
-                                                                    Shirts & tops
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="productgird.html">
-                                                                    Laptop & Brie
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="productgird.html">
-                                                                    Dresses
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="productgird.html">
-                                                                    Blazers & Jackets
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="productgird.html">
-                                                                    Shoulder Bags
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="productgird.html">
-                                                Liên hệ chúng tôi
-                                            </a>
-                                        </li>
-
+                           <ul class="nav navbar-nav">
+                              <li class="active dropdown">
+                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trang chủ</a>
+                                 <div class="dropdown-menu">
+                                    <ul class="mega-menu-links">
+                                       <li><a href="index.php">Trang  Chủ</a></li>
+                                       <li><a href="productlist.php">Danh sách sản phẩm</a></li>
+                                       <li><a href="cart.php">Giỏ hàng </a></li>
+                                       <li><a href="checkout.php">CheckOut</a></li>
+                                       <li><a href="contact.php">Liên hệ</a></li>
                                     </ul>
-                                </div>
+                                 </div>
+                              </li>
+                              <li><a href="productgird.php">Sale</a></li>
+                              <li><a href="productlist.php">Tư vấn thuốc </a></li>
+                              <li class="dropdown">
+                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sống Khỏe</a>
+                                 <div class="dropdown-menu mega-menu">
+                                    <div class="row">
+                                       <div class="col-md-6 col-sm-6">
+                                          <ul class="mega-menu-links">
+                                             <li><a href="">Bệnh thường gặp</a></li>
+                                             <li><a href="">Gia đình</a></li>
+                                             <li><a href="">Bệnh mãn tính</a></li>
+                                             <li><a href="">Làm đẹp</a></li>
+                                             <li><a href="">Dinh dưỡng</a></li>
+                                             <li><a href="">Tin tức </a></li>
+                                          </ul>
+                                       </div>
+
+                                    </div>
+                                 </div>
+                              </li>
+                              <li><a href="">blog</a></li>
+                              <li><a href="contact.php">Liên hệ chúng tôi</a></li>
+                           </ul>
+                        </div>
                             </div>
                         </div>
                     </div>
