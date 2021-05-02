@@ -184,7 +184,7 @@
                                                 </strong>
                                             </span>
                                             <button class="checkout" onClick="location.href='checkout.php'">
-                                                CheckOut
+                                                Thanh Toán
                                             </button>
                                         </li>
                                     </ul>
@@ -212,7 +212,7 @@
                                        <li><a href="index.php">Trang  Chủ</a></li>
                                        <li><a href="productlist.php">Danh sách sản phẩm</a></li>
                                        <li><a href="cart.php">Giỏ hàng </a></li>
-                                       <li><a href="checkout.php">CheckOut</a></li>
+                                       <li><a href="checkout.php">Thanh Toán</a></li>
                                        <li><a href="contact.php">Liên hệ</a></li>
                                     </ul>
                                  </div>
@@ -351,6 +351,7 @@
                                                                     <option selected disabled></option>
                                                                     <option value="0" <?php if($temp['sex']=='0') echo 'selected';?>>Nam</option>
                                                                     <option value="1" <?php if($temp['sex']=='1') echo 'selected';?>>Nữ</option>
+                                                                    <option value="2" <?php if($temp['sex']=='2') echo 'selected';?>>Khác</option>
                                                                 </select>
                                                                 <input type="hidden"> 
                                                             </strong>   
@@ -431,20 +432,21 @@
                                 <!--js-->
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 <script src='js/districts.min.js'></script>
-<script>
-        if (address_2 = localStorage.getItem('address_2_saved')) {
-            $('select[name="calc_shipping_district"] option').each(function() {
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<<script>
+        /*if (address_2 = localStorage.getItem('address_2_saved')) {
+            /*$('select[name="calc_shipping_district"] option').each(function() {
                 if ($(this).text() == address_2) {
-                $(this).attr('selected', '')
+                    $(this).attr('selected', '')
                 }
-            })
-            $('input.billing_address_2').attr('value', address_2)
-        }
+            })*/
+            //$('input.billing_address_2').attr('value', address_2)
+        //}
         if (district = localStorage.getItem('district')) {
             $('select[name="calc_shipping_district"]').html(district)
             $('select[name="calc_shipping_district"]').on('change', function() {
                 var target = $(this).children('option:selected')
-                target.attr('selected', '')
+                //target.attr('selected', '')
                 $('select[name="calc_shipping_district"] option').not(target).removeAttr('selected')
                 address_2 = target.text()
                 $('input.billing_address_2').attr('value', address_2)
@@ -456,16 +458,15 @@
         $('select[name="calc_shipping_provinces"]').each(function() {
             var $this = $(this),
                 stc = ''
-            c.forEach(function(i, e) {
-                e += +1
-                stc += '<option value=' + e + '>' + i + '</option>'
+            c.forEach(function(i) {
+                stc += '<option value="' + i + '">' + i + '</option>'
                 $this.html('<option value="">Tỉnh / Thành phố</option>' + stc)
                 if (address_1 = localStorage.getItem('address_1_saved')) {
-                $('select[name="calc_shipping_provinces"] option').each(function() {
+                /*$('select[name="calc_shipping_provinces"] option').each(function() {
                     if ($(this).text() == address_1) {
-                    $(this).attr('selected', '')
+                        $(this).attr('selected', '');                     
                     }
-                })
+                })*/
                 $('input.billing_address_1').attr('value', address_1)
                 }
                 $this.on('change', function(i) {
@@ -483,7 +484,7 @@
                     localStorage.setItem('district', district)
                     $('select[name="calc_shipping_district"]').on('change', function() {
                         var target = $(this).children('option:selected')
-                        target.attr('selected', '')
+                        //target.attr('selected', '')
                         $('select[name="calc_shipping_district"] option').not(target).removeAttr('selected')
                         var address_2 = target.text()
                         $('input.billing_address_2').attr('value', address_2)

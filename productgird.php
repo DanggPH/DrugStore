@@ -139,7 +139,7 @@ if($username!= null){
                   <li class="option-cart" onmouseover="updateCart(),updatePrice()">
                     <a href="#" class="cart-icon">cart <span class="cart_no">0</span></a>
                     <ul class="option-cart-item" id="cart-list">
-                      <li id="marker"><span class="total">Total <strong id="total-price" >600.000 VNĐ</strong></span><button class="checkout" onClick="location.href='checkout.html'">CheckOut</button></li>
+                      <li id="marker"><span class="total">Total <strong id="total-price" >0 VNĐ</strong></span><button class="checkout" onClick="checkout(),location.href='checkout.php'">Thanh Toán</button></li>
                     </ul>
                   </li>
                 </ul>
@@ -185,7 +185,7 @@ if($username!= null){
                             </a>
                           </li>
                           <li>
-                            <a href="contact.html">
+                            <a href="contact.php">
                               contact
                             </a>
                           </li>
@@ -211,32 +211,32 @@ if($username!= null){
                           <div class="col-md-6 col-sm-6">
                             <ul class="mega-menu-links">
                               <li>
-                                <a href="productgird.html">
+                                <a href="productgird.php">
                                   Bệnh thường gặp
                                 </a>
                               </li>
                               <li>
-                                <a href="productgird.html">
+                                <a href="productgird.php">
                                   Gia đình
                                 </a>
                               </li>
                               <li>
-                                <a href="productgird.html">
+                                <a href="productgird.php">
                                   Bệnh mãn tính
                                 </a>
                               </li>
                               <li>
-                                <a href="productgird.html">
+                                <a href="productgird.php">
                                   Làm đẹp
                                 </a>
                               </li>
                               <li>
-                                <a href="productgird.html">
+                                <a href="productgird.php">
                                   Dinh dưỡng
                                 </a>
                               </li>
                               <li>
-                                <a href="productgird.html">
+                                <a href="productgird.php">
                                   Tin tức 
                                 </a>
                               </li>
@@ -247,12 +247,12 @@ if($username!= null){
                       </div>
                     </li>
                     <li>
-                      <a href="productgird.html">
+                      <a href="productgird.php">
                         Blog
                       </a>
                     </li>
                     <li>
-                      <a href="productgird.html">
+                      <a href="productgird.php">
                         Liên hệ chúng tôi
                       </a>
                     </li>>

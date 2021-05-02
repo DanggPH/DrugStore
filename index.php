@@ -41,7 +41,7 @@ if(isset($_SESSION['userinfor'])) {
             <div class="container">
                <div class="row">
                   <div class="col-md-2 col-sm-2">
-                     <div class="logo"><a href="index.html"><img src="images/logo.png" alt="FlatShop"></a></div>
+                     <div class="logo"><a href="index.php"><img src="images/logo.png" alt="FlatShop"></a></div>
                   </div>
                   <div class="col-md-10 col-sm-10">
                      <div class="header_top">
@@ -87,7 +87,7 @@ if(isset($_SESSION['userinfor'])) {
                            <li class="option-cart" onmouseover="updateCart(),updatePrice()">
                               <a href="#" class="cart-icon">cart <span class="cart_no">0</span></a>
                               <ul class="option-cart-item" id="cart-list">
-                                 <li id="marker"><span class="total">Total <strong id="total-price" >600.000 VNĐ</strong></span><button class="checkout" onClick="location.href='checkout.html'">CheckOut</button></li>
+                                 <li id="marker"><span class="total">Total <strong id="total-price" >0 VNĐ</strong></span><button class="checkout" onClick="checkout()">Thanh Toán</button></li>
                               </ul>
                            </li>
                         </ul>
@@ -101,7 +101,7 @@ if(isset($_SESSION['userinfor'])) {
                                        <li><a href="index.php">Trang  Chủ</a></li>
                                        <li><a href="productlist.php">Danh sách sản phẩm</a></li>
                                        <li><a href="cart.php">Giỏ hàng </a></li>
-                                       <li><a href="checkout.php">CheckOut</a></li>
+                                       <li><a href="checkout.php">Thanh Toán</a></li>
                                        <li><a href="contact.php">Liên hệ</a></li>
                                     </ul>
                                  </div>

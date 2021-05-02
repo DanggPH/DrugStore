@@ -5,7 +5,6 @@ if(isset($_POST)) {
     $password = $confirmation_pwd ='';
     $email = $fullname = $address1 = $address2 = $district = $phone = $city = $usr= $sex= '';
     $alert='';
-    $_SESSION['notify']="post ROONG";
     if(isset($_POST['fullname']) and $_POST['fullname']!='') {
         $fullname =addslashes(strip_tags($_POST['fullname']));
     } else $alert=$alert.'<br> Nhập họ tên';
