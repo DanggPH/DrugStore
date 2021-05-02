@@ -50,6 +50,8 @@ $firtIndex=($page-1)*$limit;
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,500italic,100italic,100' rel='stylesheet' type='text/css'>
     <link href="css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/logout.js"></script>
     <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen"/>
     <link href="css/style.css" rel="stylesheet">
   </head>
@@ -113,7 +115,7 @@ $firtIndex=($page-1)*$limit;
 if($username!= null){
    echo '<tr>
    <h5 class="text-center">Xin chào <strong>'.$fullname.'</strong></h5>
-   <li><a href="Database/Logout.php" class="log">Đăng xuất</a></li>
+   <li><a href="" class="log" onclick="logout()">Đăng xuất</a></li>
    </tr>';
 }else echo '<tr>
       <li><a href="login.php" class="log">Đăng nhập</a></li>
