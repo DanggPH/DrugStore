@@ -24,6 +24,7 @@
 			if($result != null && count($result) > 0) {
 				//login success
 				$_SESSION['userinfor'] = $result[0];
+				$_SESSION['cart'] = $result[0]['cart'];
 				unset($_SESSION['email']);
 				unset($_SESSION['password']);
 				header('Location:../index.php');
@@ -41,3 +42,6 @@
 		
 	}
 ?>
+<html>
+<header>
+

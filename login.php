@@ -18,8 +18,17 @@ if(isset($_SESSION['email'])) $email=$_SESSION['email']; else $email='';
         <link href="css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
         <link href="css/style.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+	  <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+	  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+	  <script type="text/javascript" src="js/jquery.sequence-min.js"></script>
+	  <script type="text/javascript" src="js/jquery.carouFredSel-6.2.1-packed.js"></script>
+	  <script defer src="js/jquery.flexslider.js"></script>
+	  <script type="text/javascript" src="js/script.min.js" ></script>
+     <script type="text/javascript" src="js/cart.js"></script>
+     <script type="text/javascript" src="js/logout.js"></script>
         <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/php5shiv.js">
         </script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js">
         </script>
@@ -32,7 +41,7 @@ if(isset($_SESSION['email'])) $email=$_SESSION['email']; else $email='';
                     <div class="row">
                         <div class="col-md-2 col-sm-2">
                             <div class="logo">
-                                <a href="index.html">
+                                <a href="index.php">
                                     <img src="images/logo.png" alt="FlatShop">
                                 </a>
                             </div>
@@ -81,12 +90,7 @@ if(isset($_SESSION['email'])) $email=$_SESSION['email']; else $email='';
                                     <div class="col-md-3">
                                         <ul class="usermenu">
                                             <li>
-                                                <a href="login.html" class="log">
-                                                    Đăng nhập
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="register.html" class="reg">
+                                                <a href="register.php" class="reg">
                                                     Đăng kí
                                                 </a>
                                             </li>
@@ -104,87 +108,10 @@ if(isset($_SESSION['email'])) $email=$_SESSION['email']; else $email='';
                                             <input class="search-input" placeholder="Nhập từ khóa tìm kiếm..." type="text" value="" name="search">
                                         </form>
                                     </li>
-                                    <li class="option-cart">
-                                        <a href="#" class="cart-icon">
-                                            cart
-                                            <span class="cart_no">
-                                                02
-                                            </span>
-                                        </a>
-                                        <ul class="option-cart-item">
-                                            <li>
-                                                <div class="cart-item">
-                                                    <div class="image">
-                                                        <img src="images/products/thum/products-01.png" alt="">
-                                                    </div>
-                                                    <div class="item-description">
-                                                        <p class="name">
-                                                            Lincoln chair
-                                                        </p>
-                                                        <p>
-                                                            Size:
-                                                            <span class="light-red">
-                                                                One size
-                                                            </span>
-                                                            <br>
-                                                            Quantity:
-                                                            <span class="light-red">
-                                                                01
-                                                            </span>
-                                                        </p>
-                                                    </div>
-                                                    <div class="right">
-                                                        <p class="price">
-                                                            300.000 VNĐ
-                                                        </p>
-                                                        <a href="#" class="remove">
-                                                            <img src="images/remove.png" alt="remove">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="cart-item">
-                                                    <div class="image">
-                                                        <img src="images/products/thum/products-02.png" alt="">
-                                                    </div>
-                                                    <div class="item-description">
-                                                        <p class="name">
-                                                            Sản phẩm 2021
-                                                        </p>
-                                                        <p>
-                                                            Size:
-                                                            <span class="light-red">
-                                                                One size
-                                                            </span>
-                                                            <br>
-                                                            Số lượng:
-                                                            <span class="light-red">
-                                                                01
-                                                            </span>
-                                                        </p>
-                                                    </div>
-                                                    <div class="right">
-                                                        <p class="price">
-                                                            300.000 VNĐ
-                                                        </p>
-                                                        <a href="#" class="remove">
-                                                            <img src="images/remove.png" alt="remove">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <span class="total">
-                                                    Tổng cộng
-                                                    <strong>
-                                                        600.000 VNĐ
-                                                    </strong>
-                                                </span>
-                                                <button class="checkout" onClick="location.href='checkout.html'">
-                                                    CheckOut
-                                                </button>
-                                            </li>
+                                    <li class="option-cart" onmouseover="updateCart(),updatePrice()">
+                                        <a href="#" class="cart-icon">cart <span class="cart_no">0</span></a>
+                                        <ul class="option-cart-item" id="cart-list">
+                                            <li id="marker"><span class="total">Total <strong id="total-price" >600.000 VNĐ</strong></span><button class="checkout" onClick="location.href='checkout.html'">CheckOut</button></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -279,7 +206,7 @@ if(isset($_SESSION['email'])) $email=$_SESSION['email']; else $email='';
                                     <td> </div> </td>
                                     <td> <div class="product-info"> </td>
                                     <td>    <p> </td>
-                                    <td>        <a href="details.html"> </td>
+                                    <td>        <a href="details.php"> </td>
                                     <td>           '.$item['name'].' </td>
                                         <td>    </a> </td>
                                     <td> </p>   </td>
@@ -351,7 +278,7 @@ if(isset($_SESSION['email'])) $email=$_SESSION['email']; else $email='';
                             <div class="checkout-page">
                                 <ol class="checkout-steps">
                                     <li class="steps active">
-                                        <a href="login.html" class="step-title">
+                                        <a href="login.php" class="step-title">
                                             Thông tin đăng nhập
                                         </a>
                                         <div class="step-description">

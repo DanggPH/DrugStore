@@ -62,7 +62,7 @@ $sql = "SELECT a.*, avg(b.voted) vote, COUNT(b.ID) count\n"
 	  <script type="text/javascript" src="js/jquery.carouFredSel-6.2.1-packed.js"></script>
 	  <script defer src="js/jquery.flexslider.js"></script>
 	  <script type="text/javascript" src="js/script.min2.js" ></script>
-    <script type="text/javascript" src="js/cart.js"></script>
+    <script type="text/javascript" src="js/cartfordetails.js"></script>
     <style>
     .top-space{
       margin-top: 7% !important;
@@ -152,7 +152,7 @@ $sql = "SELECT a.*, avg(b.voted) vote, COUNT(b.ID) count\n"
                   <li class="option-cart" onmouseover="updateCart(),updatePrice()">
                     <a href="#" class="cart-icon">cart <span class="cart_no">0</span></a>
                     <ul class="option-cart-item" id="cart-list">
-                        <li id="marker"><span class="total">Total <strong id="total-price" >600.000 VNĐ</strong></span><button class="checkout" onClick="location.href='checkout.html'">CheckOut</button></li>
+                        <li id="marker"><span class="total">Total <strong id="total-price" >0 VNĐ</strong></span><button class="checkout" onClick="location.href='checkout.html'">CheckOut</button></li>
                     </ul>
                   </li>
                 </ul>
@@ -412,7 +412,7 @@ $sql = "SELECT a.*, avg(b.voted) vote, COUNT(b.ID) count\n"
                   <div class="wided">
                     <div class="Sô lượng">
                       Sô lượng &nbsp;&nbsp;: 
-                      <select>
+                      <select id="quality">
                         <?php
                         for ($i=1; $i <= $product['amount']; $i++) { 
                           echo '<option value="'.$i.'">'.$i.'</option>';
@@ -420,7 +420,6 @@ $sql = "SELECT a.*, avg(b.voted) vote, COUNT(b.ID) count\n"
                         ?>
                       </select>
                     </div>
-                    
                     <div class="button_group">
                       <button class="button" onclick="addToCart(this);updateCart();" >
                         Thêm vào giỏ

@@ -6,6 +6,14 @@ $fullname = '';
 if(isset($_SESSION['userinfor'])) {
 	$username = $_SESSION['userinfor'];
 	$fullname = $username['fullname'];
+   if(isset($_SESSION['cart']) and $_SESSION['cart']!='')
+      {
+         echo '<script>localStorage.removeItem("arrCart");
+         localStorage.removeItem("arrCart1");
+         localStorage.setItem("arrCart1",JSON.stringify('.$_SESSION['cart'].'));</script>';
+         unset($_SESSION['cart']);
+      }
+      
 }
 ?>
 <!DOCTYPE html>
@@ -17,8 +25,11 @@ if(isset($_SESSION['userinfor'])) {
       <link rel="shortcut icon" href="images/favicon.png">
       <title>Welcome to Drugshop</title>
       <link href="css/bootstrap.css" rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.1.1.min.js" ></script>
       <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,500italic,100italic,100' rel='stylesheet' type='text/css'>
       <link href="css/font-awesome.min.css" rel="stylesheet">
+      <script type="text/javascript" src="js/logout.js"></script>
       <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen"/>
       <link href="css/sequence-looptheme.css" rel="stylesheet" media="all"/>
       <link href="css/style.css" rel="stylesheet">
@@ -50,17 +61,18 @@ if(isset($_SESSION['userinfor'])) {
                               </ul>
                            </div>
                            <div class="col-md-3">
-                              <ul class="usermenu">
+                              <ul class="usermenu">   
                                 <?php
-                                    if($username!= null){
-                                    echo '<tr>
-                                    <h5 class="text-center">Xin chào <strong>'.$fullname.'</strong></h5>
-                                    <li><a href="Database/Logout.php" class="log">Đăng xuất</a></li>
-                                    </tr>';
-                                    }else echo '<tr>
-                                        <li><a href="login.php" class="log">Đăng nhập</a></li>
-                                        <li><a href="register.php" class="reg">Đăng kí</a></li>  
-                                    </tr>';
+                                 // echo $_SESSION['sql'];
+                                 if($username!= null){
+                                 echo '<tr>
+                                 <h5 class="text-center">Xin chào <strong>'.$fullname.'</strong></h5>
+                                 <li><a href="" class="log" onclick="logout()">Đăng xuất</a></li>
+                                 </tr>';      
+                                 }else echo '<tr>
+                                       <li><a href="login.php" class="log">Đăng nhập</a></li>
+                                       <li><a href="register.php" class="reg">Đăng kí</a></li>  
+                                 </tr>';
                                 ?>
                               </ul>
                            </div>
