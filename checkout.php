@@ -12,7 +12,7 @@ if(isset($_SESSION['cart'])) {
     $cartdump=$_SESSION["cart"];
     $cart=json_decode($cartdump,true);
     // $cart="'".$_SESSION["cart"]."'";
-}
+} else $cart='';
 $sql='select * from address1 where idCus='.$username['ID'];
 $add=executeSingleResult($sql);
 ?>
@@ -78,11 +78,7 @@ $add=executeSingleResult($sql);
                                  <h5 class="text-center">Xin chào <strong>'.$fullname.'</strong></h5>
                                  <li><a href="" class="log" onclick="logout()">Đăng xuất</a></li>
                                  </tr>';   
-                                 echo $cartdump;  
-                                 foreach($cart as $item){
-                                    echo $item['name'];
                                     }
-                                 }
                                 ?>
                               </ul>
                            </div>
@@ -183,7 +179,7 @@ $add=executeSingleResult($sql);
                                                 <label class="lebel" style="font-size: medium; color:black">
                                                 Quận/Huyện-Thành phố/Tỉnh   
                                                 </label>
-                                                <input type="text" class="input" name="city" value="<?php echo $add['district'].','.$add['province'];?>">
+                                                <input type="text" class="input" name="city" value="<?php echo $add['district'].','.$add['province'];?>" readonly>
                                             </div>  
                                             <div class="form-row">
                                                 <label class="lebel-abs" style="font-size: medium; color:black">
@@ -225,13 +221,21 @@ $add=executeSingleResult($sql);
                                                 </span>
                                             </p>
                                         </div>
-                                        <button type="submit">Xác nhận</button>
+                                        <button type="submit" onclick="removecart()">Xác nhận</button>
+                                        <!-- <script>
+                                        function removecart(){
+                                            localStorage.removeItem('cart');
+                                            localStorage.removeItem('arrCart');
+                                        }
+                                        </script> -->
                                     </div>
                                     <input type="hidden" name="cart" value="<?=$cart?>">
                                     <input type="hidden" name="idCus" value="<?=$username['ID']?>">
                                     <div class="col-md-4 col-sm-4"> 
                                             <?php
+                                        
                                             $total=0;
+                                            if($cart!=''){
                                             foreach ($cart as $item) {
                                                 
                                                 echo '<div class="form-row">
@@ -249,15 +253,15 @@ $add=executeSingleResult($sql);
                                             </li>
                                             </div>';
                                             $total=$total+(int)$item['price']*(int)$item['quality'];
-                                            }
-                                            
+                                                }
+                                            }   
                                             ?>
                                         <div class="form-row">
                                             <div id="marker">
                                                 <span class="total" style="font-size: large; color:aliceblue">Total <strong id="total-price"><?=$total?> &nbsp;VNĐ</strong></span>
                                             </div>
                                         </div>
-                                        
+                                        <?php echo $_SESSION['alert'];?>
                                     </div>
                                 </div>
                             </form>
