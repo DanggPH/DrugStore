@@ -48,12 +48,13 @@ if(isset($_POST)) {
         $created_at =$updated_at =date('Y-m-d H:s:i');
         $sql = "INSERT INTO accountcus (usernameCus, password, email, fullname, sex, phonenumber, created_at, updated_at) VALUES ('".$usr."','".md5(md5(md5($password)))."','".$email."', N'".$fullname."', '".$sex."', '".$phone."', '".$created_at."', '".$updated_at."')";
         execute($sql);
+        // $_SESSION['notify']=$sql; 
         $sqlfindID='select * from accountcus where usernameCus="'.$usr.'" and email="'.$email.'"';
         $user=executeSingleResult($sqlfindID);
         $sql="INSERT INTO address1 (IDcus, province, district, street1, street2) VALUES ('".$user['ID']."', N'".$city."', N'".$district."', N'".$address1."', N'".$address2."')";
         execute($sql);
         $_SESSION['userinfor']=$user;
-        // $_SESSION['notify']=$sql;   
+        $_SESSION['notify']=$sql;   
     } else{
         $temp=['email'=>$email, 'fullname'=>$fullname , 'address1'=>$address1 , 'address2'=>$address2 , 'phone'=>$phone , 'usr'=>$usr, 'sex'=>$sex];
         $_SESSION['temp']=$temp;
