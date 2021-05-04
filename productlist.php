@@ -46,7 +46,7 @@ $firtIndex=($page-1)*$limit;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="images/favicon.png">
     <title>
-      Welcome to DrugShop
+      Danh sách sản phẩm
     </title>
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,500italic,100italic,100' rel='stylesheet' type='text/css'>
@@ -82,38 +82,7 @@ $firtIndex=($page-1)*$limit;
                     </ul>
                   </div>
                   <div class="col-md-6">
-                    <ul class="topmenu">
-                      <li>
-                        <a href="#">
-                          About Us
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          News
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          Service
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          Recruiment
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          Media
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          Support
-                        </a>
-                      </li>
-                    </ul>
+                   
                   </div>
                   <div class="col-md-3">
                     <ul class="usermenu">
@@ -137,7 +106,7 @@ if($username!= null){
               <div class="header_bottom">
                 <ul class="option">
                   <li id="search" class="search">
-                    <form method="GET" >
+                    <form method="GET" action="productlist.php" >
                       <input class="search-submit" type="submit" value="">
                       <input class="search-input" placeholder="Enter your search term..." type="text" value="" name="search">
                     </form>
@@ -180,30 +149,16 @@ if($username!= null){
                               Danh sách sản phẩm
                             </a>
                           </li>
-                          <li>
-                            <a href="cart.php">
-                              Cart
-                            </a>
-                          </li>
-                          <li>
+                          <li><a href="checkout.php">Thanh Toán</a></li>
                           <li>
                             <a href="contact.php">
-                              contact
+                              Liên hệ
                             </a>
                           </li>
                         </ul>
                       </div>
                     </li>
-                    <li>
-                      <a href="productgird.php">
-                        Sale
-                      </a>
-                    </li>
-                    <li>
-                      <a href="productlitst.php">
-                        Tư vấn thuốc
-                      </a>
-                    </li>
+                    
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         Sống khỏe
@@ -249,12 +204,12 @@ if($username!= null){
                       </div>
                     </li>
                     <li>
-                      <a href="productgird.php">
+                      <a href="">
                         Blog
                       </a>
                     </li>
                     <li>
-                      <a href="productgird.php">
+                      <a href="contact.php">
                         Liên hệ chúng tôi
                       </a>
                     </li>
@@ -286,36 +241,17 @@ if($username!= null){
                   Hạng mục
                 </h3>
                 <ul>
-                  <li>
-                    <a href="#">
-                      Thuốc không kê đơn
+                <?php
+                  $sql="select name from brands";
+                  $tagBrand=executeResult($sql);
+                  foreach ($tagBrand as $item) {
+                    echo '<li>
+                    <a href="?search='.$item['name'].'">
+                      '.$item['name'].'
                     </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Thực phẩm chức năng
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Chăm sóc sức khỏe
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Chăm sóc cá nhân
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Sản phẩm khuyến mãi
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Sản phẩm tiện lợi 
-                    </a>
-                  </li>
+                  </li>';
+                  }
+                  ?>
                 </ul>
               </div>
               <div class="price-filter leftbar">
@@ -337,64 +273,7 @@ if($username!= null){
                   <input type="submit" value="Go">
                 </form>
               </div>
-              <div class="fbl-box leftbar">
-                <h3 class="title">
-                  Facebook
-                </h3>
-                <span class="likebutton">
-                  <a href="#">
-                    <img src="images/fblike.png" alt="">
-                  </a>
-                </span>
-                <p>
-                  12k người thích trang này.
-                </p>
-                <ul>
-                  <li>
-                    <a href="#">
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                    </a>
-                  </li>
-                </ul>
-                <div class="fbplug">
-                  <a href="#">
-                    <span>
-                      <img src="images/fbicon.png" alt="">
-                    </span>
-                    Facebook social plugin
-                  </a>
-                </div>
-              </div>
-              <div class="leftbanner">
-                <img src="images/banner-small-01.png" alt="">
-              </div>
+              
             </div>
             <div class="col-md-9">
               <div class="banner">
@@ -646,26 +525,33 @@ foreach($productList as $item){
               </a>
             </div>
             <ul id="braldLogo">
-            <?php
-              //  Hiện thị logo các nhãn hiệu
-              $sql='select * from brands';
-              $listBrand=executeResult($sql);
-              for ($i=0; $i < count($listBrand) ; $i++) { 
-                if($i==0) echo '<tr><li>
-                <ul class="brand_item"> </tr>';
-                echo '<tr> <li>
-                          <a href="#">
-                            <div class="brand-logo"><img src="admin/images/'.$listBrand[$i]['logolink'].'" alt=""></div>
-                          </a>
-                      </li></tr>';
-                if($i==count($listBrand)) echo '<tr> </ul>
-                                                  </li> </tr>';
-                if($i%5==0) echo '<tr>  </ul>
-                                      </li>
-                                  <li>
-                                  <ul class="brand_item"> </tr>';
-              }
-            ?>
+             <?php
+                            //  Hiện thị logo các nhãn hiệu
+                            $temp=0;
+                            $sql='select * from brands';
+                            $listBrand=executeResult($sql);
+                            for ($i=0; $i < count($listBrand) ; $i++) { 
+                                if($i==0) echo '<tr><li>
+                                <ul class="brand_item"> </tr>';
+                                echo '<tr> <li>
+                                        <a href="produclist.php?search='.$listBrand[$i]['name'].'">
+                                            <div class="brand-logo"><img src="admin/images/'.$listBrand[$i]['logolink'].'" alt=""></div>
+                                        </a>
+                                    </li></tr>';
+                                    $temp=$temp+1;
+                                    
+                                if($i==(count($listBrand)-1)) echo '<tr> </ul>
+                                                              </li> </tr>';
+                                if($temp==5) {
+                                    echo '<tr>  </ul>
+                                                    </li>
+                                                <li>
+                                                <ul class="brand_item"> </tr>';
+                                
+                                    $temp=0;
+                                }
+                            }
+                        ?>
             </ul>
           </div>
         </div>
@@ -707,28 +593,6 @@ foreach($productList as $item){
                     Support
                   </strong>
                 </h4>
-                <ul class="support">
-                  <li>
-                    <a href="#">
-                      FAQ
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Payment Option
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Booking Tips
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Infomation
-                    </a>
-                  </li>
-                </ul>
               </div>
               <div class="col-md-3">
                 <h4 class="title">

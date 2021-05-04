@@ -39,7 +39,7 @@ $sql = "SELECT a.*, avg(b.voted) vote, COUNT(b.ID) count\n"
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="images/favicon.png">
     <title>
-      Welcome to DrugStore
+      Chi tiết sản phẩm
     </title>
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,500italic,100italic,100' rel='stylesheet' type='text/css'>
@@ -90,38 +90,6 @@ $sql = "SELECT a.*, avg(b.voted) vote, COUNT(b.ID) count\n"
                     </ul>
                   </div>
                   <div class="col-md-6">
-                    <ul class="topmenu">
-                      <li>
-                        <a href="#">
-                          About Us
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          News
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          Service
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          Recruiment
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          Media
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          Support
-                        </a>
-                      </li>
-                    </ul>
                   </div>
                   <div class="col-md-3">
                     <ul class="usermenu">
@@ -189,117 +157,25 @@ $sql = "SELECT a.*, avg(b.voted) vote, COUNT(b.ID) count\n"
                             </a>
                           </li>        
                           <li>
-                            <a href="cart.php">
-                              Cart
-                            </a>
-                          </li>
-                          <li>
                             <a href="checkout.php">
                               Thanh Toán
                             </a>
                           </li>
                           <li>
-                            <a href="contact.html">
-                              contact
+                            <a href="contact.php">
+                              Liên hệ
                             </a>
                           </li>
                         </ul>
                       </div>
                     </li>
                     <li>
-                      <a href="productgird.html">
-                        Sale
-                      </a>
-                    </li>
-                    <li>
-                      <a href="productlitst.html">
-                        Tư vấn thuốc
-                      </a>
-                    </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Sống khỏe
-                      </a>
-                      <div class="dropdown-menu mega-menu">
-                        <div class="row">
-                          <div class="col-md-6 col-sm-6">
-                            <ul class="mega-menu-links">
-                              <li>
-                                <a href="productgird.html">
-                                  New Collection
-                                </a>
-                              </li>
-                              <li>
-                                <a href="productgird.html">
-                                  Shirts & tops
-                                </a>
-                              </li>
-                              <li>
-                                <a href="productgird.html">
-                                  Laptop & Brie
-                                </a>
-                              </li>
-                              <li>
-                                <a href="productgird.html">
-                                  Dresses
-                                </a>
-                              </li>
-                              <li>
-                                <a href="productgird.html">
-                                  Blazers & Jackets
-                                </a>
-                              </li>
-                              <li>
-                                <a href="productgird.html">
-                                  Shoulder Bags
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                          <div class="col-md-6 col-sm-6">
-                            <ul class="mega-menu-links">
-                              <li>
-                                <a href="productgird.html">
-                                  New Collection
-                                </a>
-                              </li>
-                              <li>
-                                <a href="productgird.html">
-                                  Shirts & tops
-                                </a>
-                              </li>
-                              <li>
-                                <a href="productgird.html">
-                                  Laptop & Brie
-                                </a>
-                              </li>
-                              <li>
-                                <a href="productgird.html">
-                                  Dresses
-                                </a>
-                              </li>
-                              <li>
-                                <a href="productgird.html">
-                                  Blazers & Jackets
-                                </a>
-                              </li>
-                              <li>
-                                <a href="productgird.html">
-                                  Shoulder Bags
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <a href="productgird.html">
+                      <a href="">
                         blog
                       </a>
                     </li>
                     <li>
-                      <a href="productgird.html">
+                      <a href="contact.php">
                         Liên hệ chúng tôi
                       </a>
                     </li>
@@ -801,7 +677,7 @@ $(document).ready(function(){
                       echo '<tr> 
                       <td> <div class="special-item"> </td>
                       <td> <div class="product-image"> </td>
-                      <td>   <a href="detail.php?id='.$item['id'].'"> </td>
+                      <td>   <a href="details.php?id='.$item['id'].'"> </td>
                           <td>    <img src="admin/images/'.$item['image'].'" alt=""> </td>
                       <td>    </a> </td>
                       <td> </div> </td>
@@ -818,80 +694,6 @@ $(document).ready(function(){
                   <td></div></td>';
                   }
                 ?>
-              </div>
-              <div class="clearfix">
-              </div>
-              <div class="get-newsletter leftbar">
-                <h3 class="title">
-                  PHẢN  
-                  <strong>
-                    HỒI
-                  </strong>
-                </h3>
-                <p>
-                  Vui lòng nhập email để phản hồi cho chúng tôi
-                </p>
-                <form>
-                  <input class="email" type="text" name="" placeholder="Your Email...">
-                  <input class="submit" type="submit" value="Submit">
-                </form>
-              </div>
-              <div class="clearfix">
-              </div>
-              <div class="fbl-box leftbar">
-                <h3 class="title">
-                  Facebook
-                </h3>
-                <span class="likebutton">
-                  <a href="#">
-                    <img src="images/fblike.png" alt="">
-                  </a>
-                </span>
-                <p>
-                  12k người thích trang này.
-                </p>
-                <ul>
-                  <li>
-                    <a href="#">
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                    </a>
-                  </li>
-                </ul>
-                <div class="fbplug">
-                  <a href="#">
-                    <span>
-                      <img src="images/fbicon.png" alt="">
-                    </span>
-                    Facebook của chúng tôi
-                  </a>
-                </div>
               </div>
               <div class="clearfix">
               </div>
@@ -915,26 +717,33 @@ $(document).ready(function(){
               </a>
             </div>
             <ul id="braldLogo">
-              <?php
-              //  Hiện thị logo các nhãn hiệu
-              $sql='select * from brands';
-              $listBrand=executeResult($sql);
-              for ($i=0; $i < count($listBrand) ; $i++) { 
-                if($i==0) echo '<tr><li>
-                <ul class="brand_item"> </tr>';
-                echo '<tr> <li>
-                          <a href="#">
-                            <div class="brand-logo"><img src="admin/images/'.$listBrand[$i]['logolink'].'" alt=""></div>
-                          </a>
-                      </li></tr>';
-                if($i==count($listBrand)) echo '<tr> </ul>
-                                                  </li> </tr>';
-                if($i%5==0) echo '<tr>  </ul>
-                                      </li>
-                                  <li>
-                                  <ul class="brand_item"> </tr>';
-              }
-              ?>
+               <?php
+                            //  Hiện thị logo các nhãn hiệu
+                            $temp=0;
+                            $sql='select * from brands';
+                            $listBrand=executeResult($sql);
+                            for ($i=0; $i < count($listBrand) ; $i++) { 
+                                if($i==0) echo '<tr><li>
+                                <ul class="brand_item"> </tr>';
+                                echo '<tr> <li>
+                                        <a href="produclist.php?search='.$listBrand[$i]['name'].'">
+                                            <div class="brand-logo"><img src="admin/images/'.$listBrand[$i]['logolink'].'" alt=""></div>
+                                        </a>
+                                    </li></tr>';
+                                    $temp=$temp+1;
+                                    
+                                if($i==(count($listBrand)-1)) echo '<tr> </ul>
+                                                              </li> </tr>';
+                                if($temp==5) {
+                                    echo '<tr>  </ul>
+                                                    </li>
+                                                <li>
+                                                <ul class="brand_item"> </tr>';
+                                
+                                    $temp=0;
+                                }
+                            }
+                        ?>
             </ul>
           </div>
         </div>
@@ -976,28 +785,6 @@ $(document).ready(function(){
                     khách hàng
                   </strong>
                 </h4>
-                <ul class="support">
-                  <li>
-                    <a href="#">
-                      FAQ
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Payment Option
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Booking Tips
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Infomation
-                    </a>
-                  </li>
-                </ul>
               </div>
               <div class="col-md-3">
                 <h4 class="title">

@@ -9,19 +9,13 @@ if(isset($_POST['save'])){
     if(!isset($_POST['id']) || $_POST['id']==''){
         if(isset($_POST['name']) and $_POST['name']!='') {
             $name=addslashes(strip_tags($_POST['name']));
-            $sql="select name from product where name ='$name'";
+            $sql="select name from banner where name ='".$name."'";
             if(numrows($sql)>0) {
-                $errors=$errors.'<br> Tên sản phẩm đã tồn tại';
+                $errors=$errors.'<br> Tên banner đã tồn tại';
             }
-        }else $errors=$errors.'<br> Nhập tên sản phẩm';
-
-        if(isset($_POST['price']) and $_POST['price']!=''and is_numeric($_POST['price'])){ $price=addslashes(strip_tags($_POST['price']));
-        }else $errors=$errors.'<br> Nhập giá sản phẩm';
-
-        if(isset($_POST['amount']) and $_POST['amount']!='' and is_numeric($_POST['amount'])){ $amount=addslashes(strip_tags($_POST['amount']));
-        }else $errors=$errors.'<br> Nhập số lượng sản phẩm';
-        if(isset($_POST['brands']) and $_POST['brands']!=''){ $brandid=addslashes(strip_tags($_POST['brands']));
-        }else $errors=$errors.'<br> Chọn nhãn hiệu';
+        }else $errors=$errors.'<br> Nhập tên banner';
+        if(isset($_POST['link']) and $_POST['link']!='') $link=addslashes(strip_tags($_POST['link']));
+        else $errors=$errors.'<br> Nhập tên liên kết';
         $image = $_FILES['image']['name'];
         $target = "../images/".$name.basename($image);
         $file_name = $_FILES['image']['name'];
@@ -38,15 +32,14 @@ if(isset($_POST['save'])){
                 $errors=$errors.'<br>Kích thước file không được lớn hơn 2MB';
             }
         }
-        if(isset($_POST['des_product'])) $des_product=$_POST['des_product'];
         if($errors=='Trạng thái:'){
             move_uploaded_file($_FILES['image']['tmp_name'], $target);
             $image = $target;
-            $sql="insert into product (brandid, name, price, price_old, amount, image, des_product, created_at, updated_at) values ('".$brandid."',N'".$name."','".$price."','".$price."','".$amount."',N'".basename($image)."',N'".$des_product."','".$created_at."','".$updated_at."')";
+            $sql="insert into banner (name, link, image, created_at, updated_at) values (N'".$name."', N'".$link."', N'".basename($image)."','".$created_at."','".$updated_at."')";
             execute($sql);
             $errors=$errors.'<br>Đã lưu';
             $_SESSION['notify']=$errors;
-            $sqlback="select * from product where name=N'".$name."'";
+            $sqlback="select * from banner where name='".$name."'";
             $row=executeSingleResult($sqlback);
             header("Location:edit_add.php?id=".$row['id']);
         }else {
@@ -59,16 +52,9 @@ if(isset($_POST['save'])){
         if(isset($_POST['id'])) {$id=addslashes(strip_tags($_POST['id']));}
         if(isset($_POST['name'])) {
             $name=addslashes(strip_tags($_POST['name']));
-        }else $errors=$errors.'<br> Nhập tên sản phẩm';
-
-        if(isset($_POST['price']) and $_POST['price']!=''and is_numeric($_POST['price'])){ $price=addslashes(strip_tags($_POST['price']));
-        }else $errors=$errors.'<br> Nhập giá sản phẩm';
-
-        if(isset($_POST['amount']) and $_POST['amount']!='' and is_numeric($_POST['amount'])){ $amount=addslashes(strip_tags($_POST['amount']));
-        }else $errors=$errors.'<br> Nhập số lượng sản phẩm';
-        if(isset($_POST['brands']) and $_POST['brands']!='' and is_numeric($_POST['brands'])){ $brandid=addslashes(strip_tags($_POST['brands']));
-        }else $errors=$errors.'<br> Chọn nhãn hiệu';
-        if(isset($_POST['des_product'])){ $des_product=addslashes(strip_tags($_POST['des_product']));}
+        }else $errors=$errors.'<br> Nhập tên banner';
+        if(isset($_POST['link']) and $_POST['link']!='') $link=addslashes(strip_tags($_POST['link']));
+        else $errors=$errors.'<br> Nhập tên liên kết';
         if(isset($_POST['img'])) $image1=$_POST['img'];
         $file_name = $_FILES['image']['name'];
         $file_size = $_FILES['image']['size'];
@@ -85,7 +71,7 @@ if(isset($_POST['save'])){
             elseif($file_size > 2097152) {
                 $errors=$errors.'<br>Kích thước file không được lớn hơn 2MB';
             }else{
-                if(isset($_POST['img']) and $_POST['img']!='https://wallpapercave.com/wp/wp2537078.jpg')
+                if(isset($_POST['img']) and $_POST['img']!='unknown_01.png')
                     {
                         $imgSrc='../images/'.$_POST['img'];
                         if (file_exists($imgSrc))
@@ -94,12 +80,11 @@ if(isset($_POST['save'])){
                             }
                     }
                 move_uploaded_file($_FILES['image']['tmp_name'], $target);
-                $image1=$name.basename($image);
             }
             
         }
         if($errors=='Trạng thái:'){
-            $sql="update product set name=N'".$name."',brandid='".$brandid."',price_old=price , price ='".$price."', des_product=N'".$des_product."', image= N'".$image1."', amount='".$amount."', updated_at='".$updated_at."' where id =".$id;
+            $sql="update banner set name=N'".$name."', image= N'".$name.basename($image)."', link=N'".$link."', updated_at='".$updated_at."' where id =".$id;
             execute($sql);
             $errors=$errors.'<br>Đã lưu';
             $_SESSION['notify']=$errors;

@@ -60,14 +60,7 @@ $add=executeSingleResult($sql);
                               </ul>
                            </div>
                            <div class="col-md-6">
-                              <ul class="topmenu">
-                                 <li><a href="#">About Us</a></li>
-                                 <li><a href="#">News</a></li>
-                                 <li><a href="#">Service</a></li>
-                                 <li><a href="#">Recruiment</a></li>
-                                 <li><a href="#">Media</a></li>
-                                 <li><a href="#">Support</a></li>
-                              </ul>
+                              
                            </div>
                            <div class="col-md-3">
                               <ul class="usermenu">   
@@ -93,14 +86,12 @@ $add=executeSingleResult($sql);
                                     <ul class="mega-menu-links">
                                        <li><a href="index.php">Trang  Chủ</a></li>
                                        <li><a href="productlist.php">Danh sách sản phẩm</a></li>
-                                       <li><a href="cart.php">Giỏ hàng </a></li>
-                                       <li><a href="checkout.php">CheckOut</a></li>
+                                       
+                                       <li><a href="checkout.php">Thanh toán</a></li>
                                        <li><a href="contact.php">Liên hệ</a></li>
                                     </ul>
                                  </div>
                               </li>
-                              <li><a href="productgird.php">Sale</a></li>
-                              <li><a href="productlist.php">Tư vấn thuốc </a></li>
                               <li class="dropdown">
                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sống Khỏe</a>
                                  <div class="dropdown-menu mega-menu">

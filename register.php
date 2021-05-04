@@ -18,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="images/favicon.png">
     <title>
-        Welcome to DrugStore
+        Đăng kí tài khoản
     </title>
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,500italic,100italic,100' rel='stylesheet' type='text/css'>
@@ -52,38 +52,6 @@
                                     </ul>
                                 </div>
                                 <div class="col-md-6">
-                                    <ul class="topmenu">
-                                        <li>
-                                            <a href="#">
-                                                About Us
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                News
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                Service
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                Recruiment
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                Media
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                Support
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </div>
                                 <div class="col-md-3">
                                     <ul class="usermenu">
@@ -101,12 +69,12 @@
                         <div class="header_bottom">
                             <ul class="option">
                                 <li id="search" class="search">
-                                    <form>
+                                    <form method="GET" action="productlist.php">
                                         <input class="search-submit" type="submit" value="">
                                         <input class="search-input" placeholder="Nhập từ khóa tìm kiếm..." type="text" value="" name="search">
                                     </form>
                                 </li>
-                                <li class="option-cart">
+                                <!-- <li class="option-cart">
                                     <a href="#" class="cart-icon">
                                         cart
                                         <span class="cart_no">
@@ -115,7 +83,7 @@
                                     </a>
                                     <ul class="option-cart-item">
                                         <li>
-                                            <div class="cart-item">
+                                            <div class="cart-item"> -->
                                                 <!--<div class="image">
                                                     <img src="images/products/thum/products-01.png" alt="">
                                                 </div>
@@ -176,7 +144,7 @@
                                                 </div>
                                             </div>
                                         </li>-->
-                                        <li>
+                                        <!-- <li>
                                             <span class="total">
                                                 Tổng cộng
                                                 <strong>
@@ -187,7 +155,7 @@
                                                 Thanh Toán
                                             </button>
                                         </li>
-                                    </ul>
+                                    </ul> -->
                                 </li>
                             </ul>
                             <div class="navbar-header">
@@ -211,8 +179,6 @@
                                     <ul class="mega-menu-links">
                                        <li><a href="index.php">Trang  Chủ</a></li>
                                        <li><a href="productlist.php">Danh sách sản phẩm</a></li>
-                                       <li><a href="cart.php">Giỏ hàng </a></li>
-                                       <li><a href="checkout.php">Thanh Toán</a></li>
                                        <li><a href="contact.php">Liên hệ</a></li>
                                     </ul>
                                  </div>
@@ -274,13 +240,13 @@
                                     echo '<tr> 
                                     <td> <div class="special-item"> </td>
                                     <td> <div class="product-image"> </td>
-                                    <td>   <a href="detail.php?id='.$item['id'].'"> </td>
+                                    <td>   <a href="details.php?id='.$item['id'].'"> </td>
                                         <td>    <img src="admin/images/'.$item['image'].'" alt=""> </td>
                                     <td>    </a> </td>
                                     <td> </div> </td>
                                     <td> <div class="product-info"> </td>
                                     <td>    <p> </td>
-                                    <td>        <a href="details.html"> </td>
+                                    <td>        <a href="details.php?id='.$item['id'].'"> </td>
                                     <td>           '.$item['name'].' </td>
                                         <td>    </a> </td>
                                     <td> </p>   </td>

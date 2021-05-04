@@ -55,6 +55,14 @@ $_SESSION['token']=$token;
     .top-space{
         margin-top: 5% !important;
     }
+    .card-text{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 20px;
+        -webkit-line-clamp: 4;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+    }
     </style>
   </head>
   <body>
@@ -99,6 +107,9 @@ $_SESSION['token']=$token;
                 </a>
                 <a href="../product/index.php" class="list-group-item list-group-item-action active" aria-current="true">
                   Sản Phẩm
+                </a>
+                <a href="../banner/" class="list-group-item list-group-item-action">
+                  Banner quảng cáo
                 </a>
                 <a href="../comment/" class="list-group-item list-group-item-action ">
                   Đánh giá khách hàng

@@ -105,6 +105,9 @@ else $sort='';
                 <a href="../product/index.php" class="list-group-item list-group-item-action">
                   Sản Phẩm
                 </a>
+                <a href="../banner/" class="list-group-item list-group-item-action">
+                  Banner quảng cáo
+                </a>
                 <a href="../comment/" class="list-group-item list-group-item-action active" aria-current="true">
                   Đánh giá khách hàng
                 </a>

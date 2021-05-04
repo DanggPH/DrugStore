@@ -76,7 +76,6 @@ if(isset($_POST['save'])){
                             }
                     }
                 move_uploaded_file($_FILES['image']['tmp_name'], $target);
-                $image1=basename($image);
             }
             
         }

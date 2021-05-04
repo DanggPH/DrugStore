@@ -1,5 +1,5 @@
 <?php
 define('HOST', 'localhost');
-define('USERNAME', 'admin');
+define('USERNAME', 'root');
 define('PASSWORD', '');
 define('DATABASE', 'pharmadb');

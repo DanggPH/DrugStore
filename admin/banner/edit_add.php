@@ -15,17 +15,18 @@ if(isset($_SESSION['username']) and isset($_SESSION['password'])){
 if(isset($_POST['token']) and $_POST['token']!=$_SESSION['token']) header('Location: index.php');
 $token=rand(1,10);
 $_SESSION['token']=$token;
-$id=$name=$logolink='';
+$id=$name=$link=$image='';
 if(isset($_GET['id'])and $_GET['id']!=''){
     $id=$_GET['id'];
-    $sql="select * from brands where id=".$id;
+    $sql="select * from banner where id=".$id;
     if(numrows($sql)!=null){
-        $brand=executeSingleResult($sql);
-        if(isset($brand['name'])) $name=$brand['name'];
-        if(isset($brand['logolink'])) $logolink=$brand['logolink'];
+        $banner=executeSingleResult($sql);
+        if(isset($banner['name'])) $name=$banner['name'];
+        if(isset($banner['link'])) $link=$banner['link'];
+        if(isset($banner['image'])) $image=$banner['image'];
     }else $id='';
 }else {
-  $logolink='unknown_01.jpg';
+  $image='unknown_01.jpg';
   }
 
 // include('processing.php');
@@ -112,13 +113,13 @@ if(isset($_GET['id'])and $_GET['id']!=''){
                 <a href="../order/" class="list-group-item list-group-item-action ">
                   Đơn hàng
                 </a>
-                <a href="../brand/" class="list-group-item list-group-item-action active">
+                <a href="../brand/" class="list-group-item list-group-item-action ">
                   Nhãn hiệu
                 </a>
                 <a href="../product/index.php" class="list-group-item list-group-item-action  ">
                   Sản Phẩm
                 </a>
-                <a href="../banner/" class="list-group-item list-group-item-action">
+                <a href="../banner/" class="list-group-item list-group-item-action active">
                   Banner quảng cáo
                 </a>
                 <a href="../comment/" class="list-group-item list-group-item-action ">
@@ -132,8 +133,8 @@ if(isset($_GET['id'])and $_GET['id']!=''){
         <div class="text-center fs-1">
             <?php
              if(isset($_GET['id'])){
-                 echo 'Chỉnh sửa thông tin nhãn hàng';
-             }else echo 'Thêm nhãn hàng';
+                 echo 'Chỉnh sửa thông tin banner';
+             }else echo 'Thêm banner';
             ?>
         </div>
             <div class="container top-space"> 
@@ -149,7 +150,7 @@ if(isset($_GET['id'])and $_GET['id']!=''){
                   <div class="row align-items-start row-cols-1 row-cols-sm-2">
                       <div class="col col-lg-4">
                           <div class="card shadow-sm" style="width: 15rem;">
-                              <img id="output" src="../images/<?=$logolink?>" class=" rounded-circle rounded-1">
+                              <img id="output" src="../images/<?=$image?>" class=" rounded-circle rounded-1">
     <script>
     var loadFile = function(event) {
         var output = document.getElementById('output');
@@ -161,14 +162,18 @@ if(isset($_GET['id'])and $_GET['id']!=''){
                       </div>
                       <div class="col">
                           <div class="mb-3">
-                              <label for="Name" class="form-label">Tên nhãn hàng</label>
+                              <label for="Name" class="form-label">Tên</label>
                               <input type="text" class="form-control" id="name" name="name" value="<?=$name?>">
+                          </div>
+                          <div class="mb-3">
+                              <label for="link" class="form-label">Liên kết</label>
+                              <input type="text" class="form-control" id="link" name="link" value="<?=$link?>">
                           </div>
                           <input type="hidden"  name="token" value="<?=$token?>">
                           <input type="hidden" class="form-control" id="id" name="id" value="<?=$id?>">
-                          <input type="hidden" class="form-control" id="img" name="img" value="<?=$logolink?>">
+                          <input type="hidden" class="form-control" id="img" name="img" value="<?=$image?>">
                           <button type="submit" class="btn btn-primary" name="save">Lưu</button>
-                          <a  href="index.php" class="btn btn-primary">Hủy</a>
+                          <a href="index.php" class="btn btn-primary" >Hủy</a>
                         </div>
                       </div> 
                     </div>  

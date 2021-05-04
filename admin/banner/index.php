@@ -33,8 +33,9 @@ $firtIndex=($page-1)*$limit;
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <style>
       .circle {
         line-height: 0;		/* remove line-height */ 
@@ -102,13 +103,13 @@ $firtIndex=($page-1)*$limit;
                 <a href="../order/" class="list-group-item list-group-item-action ">
                   Đơn hàng
                 </a>
-                <a href="../brand/" class="list-group-item list-group-item-action active">
+                <a href="../brand/" class="list-group-item list-group-item-action">
                   Nhãn hiệu
                 </a>
                 <a href="../product/index.php" class="list-group-item list-group-item-action ">
                   Sản Phẩm
                 </a>
-                <a href="../banner/" class="list-group-item list-group-item-action">
+                <a href="../banner/" class="list-group-item list-group-item-action active">
                   Banner quảng cáo
                 </a>
                 <a href="../comment/" class="list-group-item list-group-item-action ">
@@ -134,24 +135,24 @@ $firtIndex=($page-1)*$limit;
             </form>
             <div class="row">
 <?php
-if(isset($_POST['search'])) {
-    $key=addslashes(strip_tags($_POST['search']));
+if(isset($_GET['search'])) {
+    $key=addslashes(strip_tags($_GET['search']));
     // Câu truy vấn có tìm kiếm
-    $sql='select * from brands where name like "%'.$key.'%" limit '.$firtIndex.','.$limit;
+    $sql='select * from banner where name like "%'.$key.'%" limit '.$firtIndex.','.$limit;
 }
 // câu truy vấn khi không có tìm kiếm
-else $sql='select * from brands limit '.$firtIndex.','.$limit;
+else {$sql='select * from banner limit '.$firtIndex.','.$limit; $key='';}
 $listbrands=executeResult($sql);
 if($listbrands!=null){
     foreach ($listbrands as $item) {
         echo '<tr>
                <div class="col-lg-4 top-space ">
                     <div class="container-fluid bg-light bg-gradient border border-info">
-                        <p class="text-center"><img src="../images/'.$item['logolink'].'" class="rounded-circle rounded-1" alt="" style="width:10rem;height:10rem;"></p>
+                        <p class="text-center"><img src="../images/'.$item['image'].'" alt="" style="width:10rem;height:10rem;"></p>
                         <p class="text-center">'.$item['name'].'</p>
                         <p class="text-center">
                             <a href="edit_add.php?id='.$item['id'].'" class="btn btn-primary align-middle">Sửa</a>
-                            <a class="btn btn-primary align-middle" onclick="deleteBrand('.$item['id'].')">Xóa</a>
+                            <a class="btn btn-primary align-middle" onclick="deleteBanner('.$item['id'].')">Xóa</a>
                         </p>
                     </div>
                 </div>
@@ -160,8 +161,8 @@ if($listbrands!=null){
 }
 ?>
 <script type="text/javascript">
-  function deleteBrand(id) {
-    var option = confirm('Bạn có chắc chắn muốn xoá danh mục này không? ( Xóa cả những sản phẩm của hãng)')
+  function deleteBanner(id) {
+    var option = confirm('Bạn có chắc chắn muốn xoá danh mục này không?')
     if(!option) {
       return;
     }
@@ -191,25 +192,25 @@ if($listbrands!=null){
                    for($i=1;$i<=$countPage;$i++){
                     if(!in_array($i,$avaiablePage)){
                       if(!$isFirst &&  $page >3){
-                        echo '<li class="page-item"><a class="page-link" href="?page='.($page-3).'">...</a></li>';
+                        echo '<li class="page-item"><a class="page-link" href="?search='.$key.'&page='.($page-3).'">...</a></li>';
                         $isFirst=true;
                       }
                       if(!$isLast and  $i>$page){
-                        echo '<li class="page-item"><a class="page-link" href="?page='.($page+3).'">...</a></li>';
+                        echo '<li class="page-item"><a class="page-link" href="?search='.$key.'&page='.($page+3).'">...</a></li>';
                         $isLast=true;
                       }
                       
                       continue;
                     }
                     if($i==$page)
-                    echo '<li class="page-item active"><a class="page-link"  href="index.php?page='.$i.'">'.$i.'</a></li>';
-                    else echo '<li class="page-item"><a class="page-link"  href="index.php?page='.$i.'">'.$i.'</a></li>';
+                    echo '<li class="page-item active"><a class="page-link"  href="index.php?search='.$key.'&page='.$i.'">'.$i.'</a></li>';
+                    else echo '<li class="page-item"><a class="page-link"  href="index.php?search='.$key.'&page='.$i.'">'.$i.'</a></li>';
                   }
                 ?>
                 <li class="page-item <?php
                   if($page>=$countPage) {echo 'disabled';}
                   ?>">
-                  <a class="page-link" aria-disabled="false" href="<?php echo "?page=".($page+1);?>" >Next</a>
+                  <a class="page-link" aria-disabled="false" href="<?php echo "?search='.$key.'&page=".($page+1);?>" >Next</a>
                 </li>
               </ul>
             </nav>    

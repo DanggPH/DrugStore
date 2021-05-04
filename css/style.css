@@ -1227,10 +1227,14 @@ input[type="text"], input[type="email"], input[type="number"], input[type="passw
     -webkit-border-radius: 10px;
     border-radius: 10px;
     width: 100%;
+    height: 100px;
     padding: 10px;
     text-align: center;
 }
-
+.brand-logo img {
+    height: 85px;
+    width: auto;
+}
 #braldLogo .brand_item li {
     display: inline-block;
     *display: inline;
@@ -2887,15 +2891,22 @@ form.newsletter {
 
     #braldLogo li {
         text-align: center;
+        height: 100%;
     }
-
+    #braldLogo .brand_item{
+        height: 100%;
+    }
     #braldLogo .brand_item li {
         margin-right: 3%;
         margin-bottom: 3%;
         width: 47%;
+        height: 100%;
         float: none;
         display: inline-block;
         text-align: center;
+    }
+    .brand-logo img {
+        height: 100px;
     }
 
         #braldLogo .brand_item li:nth-child(2), #braldLogo .brand_item li:nth-child(4) {
