@@ -38,6 +38,7 @@ if(isset($_GET['id'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <style>
       .circle {
@@ -185,13 +186,15 @@ if(isset($_GET['id'])){
                               <label for="amout" class="form-label">Số lượng</label>
                               <input type="number" class="form-control" id="amount" name="amount" value="<?=$amount?>">
                           </div>   
-                          <div class="mb-3">
+                          <div class="mb-3" id="des">
                               <label for="des_product" class="form-label">Mô tả</label>
-                              <textarea class="form-control" id="des_product" name="des_product" rows="5" value=<?=$des_procduct?>></textarea>
+                              <textarea class="form-control" id="des_product1" name="des_product1" rows="10" value=<?=$des_procduct?>></textarea>
                           </div>
                           <input type="hidden" class="form-control" id="id" name="id" value="<?=$id?>">
+                          <input type="hidden" class="form-control" id="des_product" name="des_product">
                           <input type="hidden" class="form-control" id="img" name="img" value="<?=$imgSrc?>">
                           <button type="submit" class="btn btn-primary" name="save">Lưu</button>
+                          <a class="btn btn-primary" onclick="getvalue()">hhh</a>
                           <a href="index.php" class="btn btn-primary" >Hủy</a>
                         </div>
                       </div> 
@@ -199,6 +202,16 @@ if(isset($_GET['id'])){
                   </div>
                  </form>
             </div>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#des_product1' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+    function getvalue(){
+      document.getElementById('des_product').value=document.getElementById('des').children[2].children[2].children[0].innerHTML;
+    }
+</script>
         </main>
       </div>
     </div> 

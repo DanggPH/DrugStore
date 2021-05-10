@@ -9,6 +9,9 @@ $add=executeSingleResult($sql);
 if(isset($_SESSION['cart'])) {
     $cartdump=$_SESSION["cart"];
     $cart=json_decode($cartdump,true);
+     for ($i=0; $i < count($cart); $i++) { 
+            if(numrows("select * from product where name='".$cart[$i]['name']."'")!=0) {}else unset($cart[$i]);
+         }
 } else header('Location:index.php');
 if(isset($_POST)){
     $email = $fullname = $address1 = $address2 = $district = $phone = $city = $sex= '';
@@ -70,6 +73,7 @@ if(isset($_POST)){
             $idproduct=executeSingleResult("select * from product where name='".$item['name']."'")['id'];
             // $_SESSION['alert']="select * from product where name=".$item['name'];
             execute("insert into orderdetail(Idodertable, idproduct, quality) VALUES (".$key['ID'].", ".$idproduct.", ".$item['quality'].")");
+            $_SESSION['alert']=$sql;
         }
         unset($_SESSION['cart']);
         echo "<script>localStorage.removeItem('cart');

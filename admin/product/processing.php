@@ -68,7 +68,7 @@ if(isset($_POST['save'])){
         }else $errors=$errors.'<br> Nhập số lượng sản phẩm';
         if(isset($_POST['brands']) and $_POST['brands']!='' and is_numeric($_POST['brands'])){ $brandid=addslashes(strip_tags($_POST['brands']));
         }else $errors=$errors.'<br> Chọn nhãn hiệu';
-        if(isset($_POST['des_product'])){ $des_product=addslashes(strip_tags($_POST['des_product']));}
+        if(isset($_POST['des_product'])){ $des_product=$_POST['des_product'];}
         if(isset($_POST['img'])) $image1=$_POST['img'];
         $file_name = $_FILES['image']['name'];
         $file_size = $_FILES['image']['size'];

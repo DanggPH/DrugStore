@@ -108,7 +108,7 @@ if($username!= null){
                   <li class="option-cart" onmouseover="updateCart(),updatePrice()">
                     <a href="#" class="cart-icon">cart <span class="cart_no">0</span></a>
                     <ul class="option-cart-item" id="cart-list">
-                      <li id="marker"><span class="total">Total <strong id="total-price" >0 VNĐ</strong></span><button class="checkout" onClick="checkout()">Thanh Toán</button></li>
+                      <li id="marker"><span class="total">Tổng <strong id="total-price" >0 VNĐ</strong></span><button class="checkout" onClick="checkout()">Thanh Toán</button></li>
                     </ul>
                   </li>
                 </ul>

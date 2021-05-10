@@ -154,13 +154,13 @@ if(isset($_GET['page']))
 }
 $firtIndex=($page-1)*$limit;
 if($sort!='') $sort='ORDER BY '.$sort.' DESC ';
-if(isset($_POST['search'])) {
-  $key=addslashes(strip_tags($_POST['search']));
+if(isset($_GET['search'])) {
+  $key=addslashes(strip_tags($_GET['search']));
   // Câu truy vấn có tìm kiếm
-  $sql='SELECT a.* , b.fullname, b.phonenumber, b.avatar, c.name nameproduct FROM comment a, accountcus b, product c WHERE a.IDaccount=b.ID AND a.idproduct=c.id AND (a.content LIKE "%'.$key.'%" OR voted LIKE "%'.$key.'%" OR fullname LIKE "%'.$key.'%" OR nameproduct LIKE "%'.$key.'%") '.$sort.' limit '.$firtIndex.','.$limit;
+  $sql='SELECT a.*, c.name nameproduct FROM comment a, product c WHERE  a.idproduct=c.id AND (a.summary LIKE "%'.$key.'%" OR a.content LIKE "%'.$key.'%" OR voted LIKE "%'.$key.'%" OR nameproduct LIKE "%'.$key.'%") '.$sort.' limit '.$firtIndex.','.$limit;
 }
 // câu truy vấn khi không có tìm kiếm
-else $sql='SELECT a.* , b.fullname, b.phonenumber, b.avatar, c.name nameproduct FROM comment a, accountcus b, product c WHERE a.IDaccount=b.ID AND a.idproduct=c.id '.$sort.' limit '.$firtIndex.','.$limit;
+else { $sql='SELECT a.* , c.name nameproduct FROM comment a, product c WHERE a.idproduct=c.id '.$sort.' limit '.$firtIndex.','.$limit; $key='';}
 $list=executeResult($sql);
 foreach ($list as $item) {
   echo '<tr>
@@ -178,10 +178,9 @@ foreach ($list as $item) {
                       </div>
                       <div class="modal-body">
                         <div class="d-flex flex-column">
-                          <div class="d-flex justify-content-center"><img src="../images/'.$item['avatar'].'" style="width:5rem;height:5rem;"/></div>
                           <td class="align-middle"><div class="d-flex justify-content-center top-space"><b>Họ tên:</b>&nbsp;<i>'.$item['fullname'].'</i></div></td>
-                          <td class="align-middle"><div class="d-flex justify-content-center"><b>Số điện thoại:</b>&nbsp;<i>'.$item['phonenumber'].'</i></div></td>
-                        </div>
+                          <td class="align-middle"><div class="d-flex justify-content-center"><b>Email:</b>&nbsp;<i>'.$item['email'].'</i></div></td>
+                          </div>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -206,36 +205,36 @@ foreach ($list as $item) {
             </div>
             <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-center top-space">
-                <li class="page-item <?php
+              <li class="page-item <?php
                   if($page<=1) {echo 'disabled';}
                   ?>">
-                  <a class="page-link" <?php echo "href='?page=".($page-1)."'";?> tabindex="-1" aria-disabled="false">Previous</a>
+                  <a class="page-link" <?php echo "href='?search=".$key."&page=".($page-1)."'";?> tabindex="-1" aria-disabled="false">Previous</a>
                 </li>
-                  <?php
-                    $avaiablePage= [1,$page-1,$page,$page+1,$countPage];
-                    $isFirst=$isLast =false;
-                    for($i=1;$i<=$countPage;$i++){
-                      if(!in_array($i,$avaiablePage)){
-                        if(!$isFirst &&  $page >3){
-                          echo '<li class="page-item"><a class="page-link" href="?page='.($page-3).'">...</a></li>';
-                          $isFirst=true;
-                        }
-                        if(!$isLast and  $i>$page){
-                          echo '<li class="page-item"><a class="page-link" href="?page='.($page+3).'">...</a></li>';
-                          $isLast=true;
-                        }
-                        
-                        continue;
+                <?php
+                  $avaiablePage= [1,$page-1,$page,$page+1,$countPage];
+                  $isFirst=$isLast =false;
+                   for($i=1;$i<=$countPage;$i++){
+                    if(!in_array($i,$avaiablePage)){
+                      if(!$isFirst &&  $page >3){
+                        echo '<li class="page-item"><a class="page-link" href="?search='.$key.'&page='.($page-3).'">...</a></li>';
+                        $isFirst=true;
                       }
-                      if($i==$page)
-                      echo '<li class="page-item active"><a class="page-link"  href="index.php?page='.$i.'">'.$i.'</a></li>';
-                      else echo '<li class="page-item"><a class="page-link"  href="index.php?page='.$i.'">'.$i.'</a></li>';
+                      if(!$isLast and  $i>$page){
+                        echo '<li class="page-item"><a class="page-link" href="?search='.$key.'&page='.($page+3).'">...</a></li>';
+                        $isLast=true;
+                      }
+                      
+                      continue;
                     }
-                  ?>
+                    if($i==$page)
+                    echo '<li class="page-item active"><a class="page-link"  href="index.php?search='.$key.'&page='.$i.'">'.$i.'</a></li>';
+                    else echo '<li class="page-item"><a class="page-link"  href="index.php?search='.$key.'&page='.$i.'">'.$i.'</a></li>';
+                  }
+                ?>
                 <li class="page-item <?php
                   if($page>=$countPage) {echo 'disabled';}
                   ?>">
-                  <a class="page-link" aria-disabled="false" href="<?php echo "?page=".($page+1);?>" >Next</a>
+                  <a class="page-link" aria-disabled="false" href="<?php echo "?search=".$key."&page=".($page+1);?>" >Next</a>
                 </li>
               </ul>
             </nav>    

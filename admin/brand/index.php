@@ -124,23 +124,23 @@ $firtIndex=($page-1)*$limit;
 			</ul>
         <div class="album py-5 bg-light">
           <div class="container ">
-            <form method="POST">
+            <form method="GET">
                 <div class="row justify-content-end">
                     <div class="col-4">
-                    <input type="hidden"  name="token" value="<?=$token?>">
+                    <!-- <input type="hidden"  name="token" value="<?=$token?>"> -->
                     <input name="search" type="text" class="form-control" id="search" placeholder="Nhập từ khóa tìm kiếm">
                     </div>  
                 </div>
             </form>
             <div class="row">
 <?php
-if(isset($_POST['search'])) {
-    $key=addslashes(strip_tags($_POST['search']));
+if(isset($_GET['search'])) {
+    $key=addslashes(strip_tags($_GET['search']));
     // Câu truy vấn có tìm kiếm
     $sql='select * from brands where name like "%'.$key.'%" limit '.$firtIndex.','.$limit;
-}
+} 
 // câu truy vấn khi không có tìm kiếm
-else $sql='select * from brands limit '.$firtIndex.','.$limit;
+else { $sql='select * from brands limit '.$firtIndex.','.$limit;  $key='';}
 $listbrands=executeResult($sql);
 if($listbrands!=null){
     foreach ($listbrands as $item) {
@@ -178,38 +178,33 @@ if($listbrands!=null){
                 <li class="page-item <?php
                   if($page<=1) {echo 'disabled';}
                   ?>">
-                  <a class="page-link" <?php echo "href='?page=".($page-1)."'";?> tabindex="-1" aria-disabled="false">Previous</a>
+                  <a class="page-link" <?php echo "href='?search=".$key."&page=".($page-1)."'";?> tabindex="-1" aria-disabled="false">Previous</a>
                 </li>
-                <?php
-                if(isset($_POST['page']) and $_POST['page']>4){
-                  echo '<tr> <li class="page-item"><a class="page-link" href="index.php?page='.$page.'>...</a></li></tr>';
-                }
-                ?>
                 <?php
                   $avaiablePage= [1,$page-1,$page,$page+1,$countPage];
                   $isFirst=$isLast =false;
                    for($i=1;$i<=$countPage;$i++){
                     if(!in_array($i,$avaiablePage)){
                       if(!$isFirst &&  $page >3){
-                        echo '<li class="page-item"><a class="page-link" href="?page='.($page-3).'">...</a></li>';
+                        echo '<li class="page-item"><a class="page-link" href="?search='.$key.'&page='.($page-3).'">...</a></li>';
                         $isFirst=true;
                       }
                       if(!$isLast and  $i>$page){
-                        echo '<li class="page-item"><a class="page-link" href="?page='.($page+3).'">...</a></li>';
+                        echo '<li class="page-item"><a class="page-link" href="?search='.$key.'&page='.($page+3).'">...</a></li>';
                         $isLast=true;
                       }
                       
                       continue;
                     }
                     if($i==$page)
-                    echo '<li class="page-item active"><a class="page-link"  href="index.php?page='.$i.'">'.$i.'</a></li>';
-                    else echo '<li class="page-item"><a class="page-link"  href="index.php?page='.$i.'">'.$i.'</a></li>';
+                    echo '<li class="page-item active"><a class="page-link"  href="index.php?search='.$key.'&page='.$i.'">'.$i.'</a></li>';
+                    else echo '<li class="page-item"><a class="page-link"  href="index.php?search='.$key.'&page='.$i.'">'.$i.'</a></li>';
                   }
                 ?>
                 <li class="page-item <?php
                   if($page>=$countPage) {echo 'disabled';}
                   ?>">
-                  <a class="page-link" aria-disabled="false" href="<?php echo "?page=".($page+1);?>" >Next</a>
+                  <a class="page-link" aria-disabled="false" href="<?php echo "?search=".$key."&page=".($page+1);?>" >Next</a>
                 </li>
               </ul>
             </nav>    

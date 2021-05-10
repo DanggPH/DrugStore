@@ -59,7 +59,7 @@ $_SESSION['token']=$token;
         overflow: hidden;
         text-overflow: ellipsis;
         line-height: 20px;
-        -webkit-line-clamp: 4;
+        -webkit-line-clamp: 3;
         display: -webkit-box;
         -webkit-box-orient: vertical;
     }
@@ -124,10 +124,10 @@ $_SESSION['token']=$token;
 			</ul>
 			<div class="album py-5 bg-light">
 				<div class="container">
-        <form method="POST">
+        <form method="GET">
                     <div class="row justify-content-end">
                         <div class="col-4">
-                        <input type="hidden"  name="token" value="<?=$token?>">
+                        <!-- <input type="hidden"  name="token" value="<?=$token?>"> -->
                         <input name="search" type="text" class="form-control" id="search" placeholder="Nhập từ khóa tìm kiếm">
                         </div>
                         
@@ -147,13 +147,13 @@ $firtIndex=($page-1)*$limit;
 if(isset($_GET['idproduct'])) 
 {$key=$_GET['idproduct'];
   $sql="select * from product where id=".$key." limit ".$firtIndex.",".$limit;
-}elseif(isset($_POST['search'])) {
-  $key=addslashes(strip_tags($_POST['search']));
+}elseif(isset($_GET['search'])) {
+  $key=addslashes(strip_tags($_GET['search']));
   // Câu truy vấn có tìm kiếm
-  $sql='select a.*, b.name namebrand from product a, brands b  where a.brandid=b.id and (a.name LIKE "%'.$key.'%" or b.name LIKE "%'.$key.'%" or a.id LIKE "%'.$key.'%" or des_product  LIKE "%'.$key.'%" or amount LIKE "%'.$key.'%"  or price LIKE N"%'.$key.'%" or price_old LIKE N"%'.$key.'%")  limit '.$firtIndex.','.$limit;
+  $sql='select a.*, b.name namebrand from product a, brands b  where a.brandid=b.id and (a.name LIKE "%'.$key.'%" or b.name LIKE "%'.$key.'%" or a.id LIKE "%'.$key.'%" or des_product  LIKE "%'.$key.'%" or amount LIKE "%'.$key.'%"  or price LIKE "%'.$key.'%" or price_old LIKE "%'.$key.'%")  limit '.$firtIndex.','.$limit;
 }
 // câu truy vấn khi không có tìm kiếm
-else $sql="select * from product where 1 limit ".$firtIndex.",".$limit;
+else {$sql="select * from product where 1 limit ".$firtIndex.",".$limit; $key='';}
 $productList= executeResult($sql);
 foreach($productList as $item){
   if (!isset($item['image']) or $item['image']=='') $item['image']='../images/logo.png';
@@ -166,7 +166,7 @@ foreach($productList as $item){
 						<td>	<img src="../images/'.$item['image'].'" style="width: 18rem; height:45%;" class="card-img-top" alt="..."> </td>
 							<td>	<div class="card-body"> </td>
               <td>	<p class="card-text fw-bold">'.$item['name'].'</p> </td>
-								<td>	<p class="card-text "><b>Mô tả: </b>'.$item['des_product'].'</p> </td>
+								<td>	<p class="card-text "><b>Mô tả: </b>'.addslashes(strip_tags($item['des_product'])).'</p> </td>
 								<td><div class="row align-items-end"></td>
                 <div class="d-flex justify-content-between align-items-center">
                 <td>	<small class="text-muted"><b>Giá:</b>'.$item['price'].' </small> </td>
@@ -205,10 +205,10 @@ foreach($productList as $item){
             </div>
             <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-center top-space">
-                <li class="page-item <?php
+              <li class="page-item <?php
                   if($page<=1) {echo 'disabled';}
                   ?>">
-                  <a class="page-link" <?php echo "href='?page=".($page-1)."'";?> tabindex="-1" aria-disabled="false">Previous</a>
+                  <a class="page-link" <?php echo "href='?search=".$key."&page=".($page-1)."'";?> tabindex="-1" aria-disabled="false">Previous</a>
                 </li>
                 <?php
                   $avaiablePage= [1,$page-1,$page,$page+1,$countPage];
@@ -216,25 +216,25 @@ foreach($productList as $item){
                    for($i=1;$i<=$countPage;$i++){
                     if(!in_array($i,$avaiablePage)){
                       if(!$isFirst &&  $page >3){
-                        echo '<li class="page-item"><a class="page-link" href="?page='.($page-3).'">...</a></li>';
+                        echo '<li class="page-item"><a class="page-link" href="?search='.$key.'&page='.($page-3).'">...</a></li>';
                         $isFirst=true;
                       }
                       if(!$isLast and  $i>$page){
-                        echo '<li class="page-item"><a class="page-link" href="?page='.($page+3).'">...</a></li>';
+                        echo '<li class="page-item"><a class="page-link" href="?search='.$key.'&page='.($page+3).'">...</a></li>';
                         $isLast=true;
                       }
                       
                       continue;
                     }
                     if($i==$page)
-                    echo '<li class="page-item active"><a class="page-link"  href="index.php?page='.$i.'">'.$i.'</a></li>';
-                    else echo '<li class="page-item"><a class="page-link"  href="index.php?page='.$i.'">'.$i.'</a></li>';
+                    echo '<li class="page-item active"><a class="page-link"  href="index.php?search='.$key.'&page='.$i.'">'.$i.'</a></li>';
+                    else echo '<li class="page-item"><a class="page-link"  href="index.php?search='.$key.'&page='.$i.'">'.$i.'</a></li>';
                   }
                 ?>
                 <li class="page-item <?php
                   if($page>=$countPage) {echo 'disabled';}
                   ?>">
-                  <a class="page-link" aria-disabled="false" href="<?php echo "?page=".($page+1);?>" >Next</a>
+                  <a class="page-link" aria-disabled="false" href="<?php echo "?search='.$key.'&page=".($page+1);?>" >Next</a>
                 </li>
               </ul>
             </nav>    

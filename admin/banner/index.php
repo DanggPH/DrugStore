@@ -179,13 +179,8 @@ if($listbrands!=null){
                 <li class="page-item <?php
                   if($page<=1) {echo 'disabled';}
                   ?>">
-                  <a class="page-link" <?php echo "href='?page=".($page-1)."'";?> tabindex="-1" aria-disabled="false">Previous</a>
+                  <a class="page-link" <?php echo "href='?search=".$key."&page=".($page-1)."'";?> tabindex="-1" aria-disabled="false">Previous</a>
                 </li>
-                <?php
-                if(isset($_POST['page']) and $_POST['page']>4){
-                  echo '<tr> <li class="page-item"><a class="page-link" href="index.php?page='.$page.'>...</a></li></tr>';
-                }
-                ?>
                 <?php
                   $avaiablePage= [1,$page-1,$page,$page+1,$countPage];
                   $isFirst=$isLast =false;

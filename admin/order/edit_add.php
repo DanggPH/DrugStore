@@ -23,6 +23,7 @@ else header('Location:index.php');
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
     integrity="sha256-c9vxcXyAG4paArQG3xk6DjyW/9aHxai2ef9RpMWO44A=" crossorigin="anonymous"></script>
@@ -201,6 +202,18 @@ else {
                     location.reload();
                     });
                 }
+                function deleteorder(id){
+                    var option = confirm('Bạn có chắc chắn muốn xoá danh mục này không?')
+                    if(!option) {
+                    return;
+                    }
+                    console.log(id)
+                    //ajax - lenh post
+                    $.post('ajax.php',{'method':'deleteorder','id' : id},
+                    function(data) {
+                    location.href='index.php'; 
+                    });
+                }
   </script>               
                 <tr>
                   <td colspan="4" class="table-active"><b>Tổng cộng:</b></td>
@@ -223,7 +236,7 @@ $('#saveorder').click(function(){
             var pdf = new jsPDF('l', 'pt', [$('#orderpage').width(), $('#orderpage').height()]);
 
             pdf.addImage(blob, 'PNG', 0, 0, $('#orderpage').width(), $('#orderpage').height());
-            pdf.save("<?=$tmp['id']?>_<?=$tmp2['fullname']?>.pdf");
+            pdf.save("<?=$tmp['ID']?>_<?=$tmp2['fullname']?>.pdf");
 
             that.options.api.optionsChanged();
         });
@@ -239,18 +252,6 @@ $('#confirm').click(function () {
     else alert("<?=$noenough?>");
 });
 
-function deleteorder(id){
-                    var option = confirm('Bạn có chắc chắn muốn xoá danh mục này không?')
-                    if(!option) {
-                    return;
-                    }
-                    console.log(id)
-                    //ajax - lenh post
-                    $.post('ajax.php',{'method':'deleteorder','id' : id},
-                    function(data) {
-                    location.href='index.php'; 
-                    });
-                }
 </script>
           <?php
           

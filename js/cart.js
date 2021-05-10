@@ -51,7 +51,7 @@ function addToCart(item) {
     dis.setAttribute("class", "name");
     dis.innerHTML = item.parentElement.parentElement.children[1].textContent;
     var dos = document.createElement("p");
-    dos.innerHTML = "Quantity: ";
+    dos.innerHTML = "Số lượng: ";
     var dus = document.createElement("span");
     dus.setAttribute("class", "light-red");
     dus.innerHTML = 1;
@@ -91,69 +91,77 @@ setInterval(function() {
         if (localStorage.getItem("cart") == null) {
             return;
         }
+        document.getElementById("cart-list").innerHTML = localStorage.getItem("cart");
+        updateCart();
+        updatePrice();
         if (localStorage.getItem("arrCart1") != null && localStorage.getItem("arrCart1") != '') {
+            var x = document.getElementsByClassName('cart-item');
             var list = localStorage.getItem("arrCart1");
             var listcart = JSON.parse(list);
             console.log(listcart);
             for (let item of listcart) {
-                var liClass = document.createElement("li");
-                var DivContainer = document.createElement("div");
+                var flag = 1;
+                for (var i = 0; i < x.length; i++) {
+                    if (item['name'] === x[i].children[1].children[0].textContent) {
+                        flag = 0;
+                    }
+                }
+                if (flag) {
+                    var liClass = document.createElement("li");
+                    var DivContainer = document.createElement("div");
 
-                DivContainer.setAttribute("class", "cart-item");
+                    DivContainer.setAttribute("class", "cart-item");
 
-                var imageContainer = document.createElement("div");
-                imageContainer.setAttribute("class", "image");
-                var image = document.createElement("img");
-                image.setAttribute("src", item['image']);
+                    var imageContainer = document.createElement("div");
+                    imageContainer.setAttribute("class", "image");
+                    var image = document.createElement("img");
+                    image.setAttribute("src", item['image']);
 
-                var descripsion = document.createElement("div");
-                descripsion.setAttribute("class", "item-description");
+                    var descripsion = document.createElement("div");
+                    descripsion.setAttribute("class", "item-description");
 
-                var dis = document.createElement("p");
-                dis.setAttribute("class", "name");
-                dis.innerHTML = item['name'];
-                var dos = document.createElement("p");
-                dos.innerHTML = "Quantity: ";
-                var dus = document.createElement("span");
-                dus.setAttribute("class", "light-red");
-                dus.innerHTML = item['quality'];
-                dos.appendChild(dus);
+                    var dis = document.createElement("p");
+                    dis.setAttribute("class", "name");
+                    dis.innerHTML = item['name'];
+                    var dos = document.createElement("p");
+                    dos.innerHTML = "Số lượng: ";
+                    var dus = document.createElement("span");
+                    dus.setAttribute("class", "light-red");
+                    dus.innerHTML = item['quality'];
+                    dos.appendChild(dus);
 
-                descripsion.appendChild(dis)
-                descripsion.appendChild(dos);
+                    descripsion.appendChild(dis)
+                    descripsion.appendChild(dos);
 
-                var right = document.createElement("div");
-                right.setAttribute("class", "right");
-                var das = document.createElement("p");
-                das.setAttribute("class", "price");
-                das.innerHTML = item['price'];
-                var ref = document.createElement("a");
-                ref.setAttribute("onMouseOver", "this.style.cursor='pointer'")
-                ref.setAttribute("class", "remove");
-                ref.setAttribute("onclick", "this.parentElement.parentElement.parentElement.remove();updateCart()");
-                var aimg = document.createElement("img");
-                aimg.setAttribute("src", "images/remove.png");
-                aimg.setAttribute("alt", "remove");
-                ref.appendChild(aimg);
-                right.appendChild(das);
-                right.appendChild(ref);
+                    var right = document.createElement("div");
+                    right.setAttribute("class", "right");
+                    var das = document.createElement("p");
+                    das.setAttribute("class", "price");
+                    das.innerHTML = item['price'];
+                    var ref = document.createElement("a");
+                    ref.setAttribute("onMouseOver", "this.style.cursor='pointer'")
+                    ref.setAttribute("class", "remove");
+                    ref.setAttribute("onclick", "this.parentElement.parentElement.parentElement.remove();updateCart()");
+                    var aimg = document.createElement("img");
+                    aimg.setAttribute("src", "images/remove.png");
+                    aimg.setAttribute("alt", "remove");
+                    ref.appendChild(aimg);
+                    right.appendChild(das);
+                    right.appendChild(ref);
 
-                imageContainer.appendChild(image);
-                DivContainer.appendChild(imageContainer);
-                DivContainer.appendChild(descripsion);
-                DivContainer.appendChild(right);
-                liClass.appendChild(DivContainer);
-                document.getElementById("cart-list").appendChild(liClass);
-                updateCart();
-                updatePrice();
+                    imageContainer.appendChild(image);
+                    DivContainer.appendChild(imageContainer);
+                    DivContainer.appendChild(descripsion);
+                    DivContainer.appendChild(right);
+                    liClass.appendChild(DivContainer);
+                    document.getElementById("cart-list").appendChild(liClass);
+                    updateCart();
+                    updatePrice();
+                }
             }
+
             localStorage.removeItem("arrCart1");
-
-
-        } else {
-            document.getElementById("cart-list").innerHTML = localStorage.getItem("cart");
-            updateCart();
-            updatePrice();
         }
+
     },
     500);

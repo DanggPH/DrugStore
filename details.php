@@ -121,7 +121,7 @@ $sql = "SELECT a.*, avg(b.voted) vote, COUNT(b.ID) count\n"
                   <li class="option-cart" onmouseover="updateCart(),updatePrice()">
                     <a href="#" class="cart-icon">cart <span class="cart_no">0</span></a>
                     <ul class="option-cart-item" id="cart-list">
-                        <li id="marker"><span class="total">Total <strong id="total-price" >0 VNĐ</strong></span><button class="checkout" onClick="checkout()">Thanh Toán</button></li>
+                        <li id="marker"><span class="total">Tổng <strong id="total-price" >0 VNĐ</strong></span><button class="checkout" onClick="checkout()">Thanh Toán</button></li>
                     </ul>
                   </li>
                 </ul>
@@ -301,18 +301,7 @@ $sql = "SELECT a.*, avg(b.voted) vote, COUNT(b.ID) count\n"
                       <button class="button" onclick="addToCart(this);updateCart();" >
                         Thêm vào giỏ
                       </button>
-                      <button class="button compare">
-                        <i class="fa fa-exchange">
-                        </i>
-                      </button>
-                      <button class="button favorite">
-                        <i class="fa fa-heart-o">
-                        </i>
-                      </button>
-                      <button class="button favorite">
-                        <i class="fa fa-envelope-o">
-                        </i>
-                      </button>
+        
                     </div>
                   </div>
                   <div class="clearfix">
@@ -385,26 +374,26 @@ $(document).ready(function(){
                               &nbsp;
                             </th>
                             <th>
-                              1 star
+                              1 sao
                             </th>
                             <th>
-                              2 stars
+                              2 sao
                             </th>
                             <th>
-                              3 stars
+                              3 sao
                             </th>
                             <th>
-                              4 stars
+                              4 sao
                             </th>
                             <th>
-                              5 stars
+                              5 sao
                             </th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
                             <td>
-                              Quality
+                              Số lượng
                             </td>
                             <td>
                               <input type="radio" name="quality" value="1"/>
@@ -424,7 +413,7 @@ $(document).ready(function(){
                           </tr>
                           <tr>
                             <td>
-                              Price
+                              Giá
                             </td>
                             <td>
                               <input type="radio" name="price" value="1">
@@ -444,7 +433,7 @@ $(document).ready(function(){
                           </tr>
                           <tr>
                             <td>
-                              Value
+                              Chất lượng
                             </td>
                             <td>
                               <input type="radio" name="value" value="1">
@@ -487,7 +476,7 @@ $(document).ready(function(){
                           </div>
                           <div class="form-row">
                             <label class="lebel-abs">
-                              Your Email 
+                              Email 
                               <!-- tự fill email -->
                               <?php
                               if(isset($email) and $email!='') $statusemail=' value="'.$email.'" readonly';
@@ -626,7 +615,7 @@ $(document).ready(function(){
                               <div class="thumbnail"><a href="details.php?id='.$item['id'].'"><img src="admin/images/'.$item['image'].'" alt="Product Name"></a></div>
                               <div class="productname">'.$item['name'].'</div>
                               <h4 class="price">'.$item['price'].' VNĐ</h4>
-                              <div class="button_group"><button class="button add-cart" type="button" onclick="addToCart(this);updateCart();">Thêm vào giỏ</button><button class="button compare" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
+                              <div class="button_group"><button class="button add-cart" type="button" onclick="addToCart(this);updateCart();">Thêm vào giỏ</button></div>
                            </div>
                         </div>
                         </tr>';

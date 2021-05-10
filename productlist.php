@@ -61,6 +61,16 @@ $firtIndex=($page-1)*$limit;
 <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js">
 </script>
 <![endif]-->
+<style>
+  .des_p{
+    overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 20px;
+        -webkit-line-clamp: 3;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+  }
+</style>
   </head>
   <body>
     <div class="wrapper">
@@ -114,7 +124,7 @@ if($username!= null){
                   <li class="option-cart" onmouseover="updateCart(),updatePrice()">
                     <a href="#" class="cart-icon">cart <span class="cart_no">0</span></a>
                     <ul class="option-cart-item" id="cart-list">
-                        <li id="marker"><span class="total">Total <strong id="total-price" >0 VNĐ</strong></span><button class="checkout()">Thanh Toán</button></li>
+                        <li id="marker"><span class="total">Tổng <strong id="total-price" >0 VNĐ</strong></span><button class="checkout()">Thanh Toán</button></li>
                     </ul>
                   </li>
                 </ul>
@@ -399,8 +409,8 @@ foreach($productList as $item){
                     '.$item['review'].'&nbsp;Review(s)
                   </a>
                 </p>
-                <p>
-                  '.$item['des_product'].'
+                <p class="des_p">
+                  '.addslashes(strip_tags($item['des_product'])).'
                 </p>
                 <div class="list_bottom">
                   <div class="price">
@@ -483,7 +493,7 @@ foreach($productList as $item){
                     </div>
                   </div>
                   <div class="pager">
-                    <a <?php if($page>1) echo 'href="?page='.($page-1).'&from='.$from.'&to='.$to.'"'; else echo 'href="?search='.$key.'&from='.$from.'&to='.$to.'"'; ?> class="prev-page">
+                    <a <?php if($page>1) echo 'href="?search='.$key.'&page='.($page-1).'&from='.$from.'&to='.$to.'"'; else echo 'href="?search='.$key.'&from='.$from.'&to='.$to.'"'; ?> class="prev-page">
                       <i class="fa fa-angle-left">
                       </i>
                     </a>

@@ -11,6 +11,9 @@ if(isset($_POST['cart'])) {$_SESSION['cart'] = $_POST['cart'];}
 if(isset($_SESSION['cart'])) {
     $cartdump=$_SESSION["cart"];
     $cart=json_decode($cartdump,true);
+    for ($i=0; $i < count($cart); $i++) { 
+            if(numrows("select * from product where name='".$cart[$i]['name']."'")!=0) {}else unset($cart[$i]);
+         }
     // $cart="'".$_SESSION["cart"]."'";
 } else $cart='';
 $sql='select * from address1 where idCus='.$username['ID'];
@@ -50,7 +53,7 @@ $add=executeSingleResult($sql);
             <div class="container">
                <div class="row">
                   <div class="col-md-2 col-sm-2">
-                     <div class="logo"><a href="index.html"><img src="images/logo.png" alt="FlatShop"></a></div>
+                     <div class="logo"><a href="index.php"><img src="images/logo.png" alt="FlatShop"></a></div>
                   </div>
                   <div class="col-md-10 col-sm-10">
                      <div class="header_top">
@@ -212,7 +215,9 @@ $add=executeSingleResult($sql);
                                                 </span>
                                             </p>
                                         </div>
-                                        <button type="submit" onclick="removecart()">Xác nhận</button>
+                                        <?php
+                                         if($cart!='' and $cart!= null) echo '<button type="submit" onclick="removecart()">Xác nhận</button>';
+                                        ?>
                                         <!-- <script>
                                         function removecart(){
                                             localStorage.removeItem('cart');
@@ -226,7 +231,7 @@ $add=executeSingleResult($sql);
                                             <?php
                                         
                                             $total=0;
-                                            if($cart!=''){
+                                            if($cart!='' and $cart!= null){
                                             foreach ($cart as $item) {
                                                 
                                                 echo '<div class="form-row">
@@ -245,14 +250,16 @@ $add=executeSingleResult($sql);
                                             </div>';
                                             $total=$total+(int)$item['price']*(int)$item['quality'];
                                                 }
-                                            }   
+                                            } else echo '<h5 style="font-size: large; color:aliceblue">
+                                            Không có sản phẩm nào trong giỏ hàng.
+                                            </h5>'  
                                             ?>
                                         <div class="form-row">
                                             <div id="marker">
-                                                <span class="total" style="font-size: large; color:aliceblue">Total <strong id="total-price"><?=$total?> &nbsp;VNĐ</strong></span>
+                                                <span class="total" style="font-size: large; color:aliceblue">Tổng <strong id="total-price"><?=$total?> &nbsp;VNĐ</strong></span>
                                             </div>
                                         </div>
-                                        <?php echo $_SESSION['alert'];?>
+                                        <!-- <?php echo $_SESSION['alert'];?> -->
                                     </div>
                                 </div>
                             </form>

@@ -8,9 +8,13 @@ if(isset($_SESSION['userinfor'])) {
 	$fullname = $username['fullname'];
    if(isset($_SESSION['cart']) and $_SESSION['cart']!='')
       {
+         $cart=$_SESSION['cart'];
+         // for ($i=0; $i < count($cart); $i++) { 
+         //    if(numrows("select * from product where name='".$cart[$i]['name']."'")!=0) {}else unset($cart[$i]);
+         // }
          echo '<script>localStorage.removeItem("arrCart");
          localStorage.removeItem("arrCart1");
-         localStorage.setItem("arrCart1",JSON.stringify('.$_SESSION['cart'].'));</script>';
+         localStorage.setItem("arrCart1",JSON.stringify('.$cart.'));</script>';
          unset($_SESSION['cart']);
       }
       
@@ -79,7 +83,7 @@ if(isset($_SESSION['userinfor'])) {
                            <li class="option-cart" onmouseover="updateCart(),updatePrice()">
                               <a href="#" class="cart-icon">cart <span class="cart_no">0</span></a>
                               <ul class="option-cart-item" id="cart-list">
-                                 <li id="marker"><span class="total">Total <strong id="total-price" >0 VNĐ</strong></span><button class="checkout" onClick="checkout()">Thanh Toán</button></li>
+                                 <li id="marker"><span class="total">Tổng <strong id="total-price" >0 VNĐ</strong></span><button class="checkout" onClick="checkout()">Thanh Toán</button></li>
                               </ul>
                            </li>
                         </ul>
@@ -199,10 +203,11 @@ if(isset($_SESSION['userinfor'])) {
                             echo '<tr>
                             <div class="col-md-3 col-sm-6">
                                 <div class="products">
-                                    <div class="offer">New</div>
+   
                                     <div class="thumbnail"><a href="details.php?id='.$item['id'].'"><img src="admin/images/'.$item['image'].'" alt="Product Name"></a></div>
                                     <div class="productname"></br></br>'.$item['name'].'</div>
                                     <h4 class="price">'.$item['price'].' VNĐ</h4>
+                                    <div class="offer">New</div>
                                     <div class="button_group"><button class="button add-cart" type="button" onclick="addToCart(this);updateCart();">Thêm vào giỏ</button></div>
                                 </div>
                             </div>
@@ -225,10 +230,11 @@ if(isset($_SESSION['userinfor'])) {
                                 echo '<tr>
                                     <div class="col-md-3 col-sm-6">
                                         <div class="products">
-                                            <div class="offer">'.round($item['saleoff']).'%</div>
+                                          
                                             <div class="thumbnail"><a href="details.php?id='.$item['id'].'"><img src="admin/images/'.$item['image'].'" alt="Product Name"></a></div>
                                             <div class="productname"></br></br>'.$item['name'].'</div>
                                             <h4 class="price">'.$item['price'].' VNĐ</h4>
+                                            <div class="offer">'.round($item['saleoff']).'%</div>
                                             <div class="button_group"><button class="button add-cart" type="button" onclick="addToCart(this);updateCart();">Thêm vào giỏ</button></div>
                                         </div>
                                     </div>
@@ -263,7 +269,7 @@ if(isset($_SESSION['userinfor'])) {
                               <div class="thumbnail"><a href="details.php?id='.$item['id'].'"><img src="admin/images/'.$item['image'].'" alt="Product Name"></a></div>
                               <div class="productname">'.$item['name'].'</div>
                               <h4 class="price">'.$item['price'].' VNĐ</h4>
-                              <div class="button_group"><button class="button add-cart" type="button" onclick="addToCart(this);updateCart();">Thêm vào giỏ</button><button class="button compare" onclick="addToCart(this);updateCart();" type="button"><i class="fa fa-exchange"></i></button><button class="button wishlist" type="button"><i class="fa fa-heart-o"></i></button></div>
+                              <div class="button_group"><button class="button add-cart" type="button" onclick="addToCart(this);updateCart();">Thêm vào giỏ</button></button></div>
                            </div>
                         </div>
                         </tr>';
